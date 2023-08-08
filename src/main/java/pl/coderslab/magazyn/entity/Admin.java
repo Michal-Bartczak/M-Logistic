@@ -13,5 +13,5 @@ import javax.persistence.*;
 @Table(name = "admins")
 public class Admin extends BaseUser {
 
-    private int permission = 4;
+    private String role = "ADMIN";
 }

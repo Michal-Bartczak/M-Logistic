@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Table(name = "customers")
 public class Customer extends BaseUser {
-    private int permission =1;
+    private String role = "CUSTOMER";
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
 
