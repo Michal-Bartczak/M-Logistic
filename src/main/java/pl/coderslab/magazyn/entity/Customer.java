@@ -17,7 +17,6 @@ public class Customer extends BaseUser {
     private String role = "CUSTOMER";
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-
     private CustomerDetails customerDetails;
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;

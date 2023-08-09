@@ -26,21 +26,25 @@
             <button type="button" id="driverButton" onclick="changeForm('driver')" class="btn btn-secondary active">Pracownik</button>
             <button type="button" id="customerButton" onclick="changeForm('customer')" class="btn btn-secondary">Klient</button>
         </div>
-        <form:form modelAttribute="registrationForm"  action="/register" method="post" id="registrationForm">
+        <form:form modelAttribute="registrationForm"  action="/register/driver" method="post" id="registrationForm">
             <div id="commonFields">
                 <div class="form-group">
                     <label for="username">Nazwa użytkownika:</label>
-                    <input type="text" class="form-control" id="username" name="username" required style="width: 30%;">
+                    <form:input path="username" type="text" class="form-control" id="username" name="username" required="true" style="width: 30%;" />
+                    <form:errors path="username" class="error"/>
                 </div>
+
 
                 <div class="form-group">
                     <label for="email">Adres email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required style="width: 30%;">
+                    <form:input path="email" type="email" class="form-control" id="email" name="email" required="true" style="width: 30%;"/>
+                    <form:errors path="email" class="error"/>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Hasło:</label>
-                    <input type="password" class="form-control" id="password" name="password" required style="width: 30%;">
+                    <form:input path="password" type="password" class="form-control" id="password" name="password" required="true" style="width: 30%;"/>
+                            <form:errors path="password" class="error"/>
                 </div>
             </div>
 
@@ -48,12 +52,14 @@
             <div id="driverFields" style="display: block;">
                 <div class="form-group">
                     <label for="name">Imię:</label>
-                    <input type="text" class="form-control" id="name" name="name" style="width: 30%;">
+                    <form:input path="name" type="text" class="form-control" id="name" name="name" style="width: 30%;"/>
+                    <form:errors path="name" class="error"/>
                 </div>
 
                 <div class="form-group">
                     <label for="surname">Nazwisko:</label>
-                    <input type="text" class="form-control" id="surname" name="surname" style="width: 30%;">
+                    <form:input path="surname" type="text" class="form-control" id="surname" name="surname" style="width: 30%;"/>
+                    <form:errors path="surname" class="error"/>
                 </div>
             </div>
 
@@ -77,11 +83,13 @@
         let customerFields = document.getElementById("customerFields");
 
         if (usertype === "driver") {
+            document.getElementById("registrationForm").action = "/register/driver";
             driverButton.classList.add("active");
             customerButton.classList.remove("active");
             driverFields.style.display = "block";
             customerFields.style.display = "none";
         } else {
+            document.getElementById("registrationForm").action = "/register/customer";
             driverButton.classList.remove("active");
             customerButton.classList.add("active");
             driverFields.style.display = "none";

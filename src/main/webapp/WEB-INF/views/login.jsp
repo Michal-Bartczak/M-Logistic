@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +20,8 @@
 <div id="main">
     <div class="container mt-5 ml-3">
         <h2 style="color: #f7403b; font-size: 3em; margin-bottom: 50px;">Logowanie</h2>
+
+        <h3 id="successLog">${registered.value}</h3>
         <h3 id="additionalText"></h3>
         <form action="/login" method="POST">
             <div class="form-group">

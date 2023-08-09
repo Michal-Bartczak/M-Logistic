@@ -1,5 +1,6 @@
 package pl.coderslab.magazyn.controller;
 
+import com.google.zxing.qrcode.decoder.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,8 @@ import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.service.CustomerService;
 import pl.coderslab.magazyn.service.DriverService;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/register")
@@ -33,24 +36,26 @@ public class RegistrationController {
         return "register";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String processForm(@RequestParam("userType") String userType,
-                              @ModelAttribute RegistrationForm registrationForm,
-                              BindingResult bindingResult) {
-        if ("driver".equals(userType)) {
-            if (bindingResult.hasErrors()) {
-                return "register";
-            }
-            driverRepository.save(driverService.compereToDriver(registrationForm));
-            return "/login";
-        } else if ("customer".equals(userType)) {
-
-            if (bindingResult.hasErrors()) {
-                return "register";
-            }
-
-            customerRepository.save(customerService.compereToCustomer(registrationForm));
+    @PostMapping("/driver")
+    public String registerDriver(@ModelAttribute RegistrationForm registrationForm,
+                                 BindingResult bindingResult,
+                                 Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/register";
         }
-        return "register";
+        driverRepository.save(driverService.compereToDriver(registrationForm));
+        model.addAttribute("registered", true);
+        return "redirect:/login";
+    }
+    @PostMapping("/customer")
+    public String registerCustomer(@ModelAttribute RegistrationForm registrationForm,
+                                   BindingResult bindingResult,
+                                   Model model){
+        if (bindingResult.hasErrors()){
+            return "register";
+        }
+        customerRepository.save(customerService.compereToCustomer(registrationForm));
+        model.addAttribute("registered", "Udało Ci się założyć konto, teraz możesz się zalogować!");
+        return "redirect:/login";
     }
 }
