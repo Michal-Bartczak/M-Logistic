@@ -25,18 +25,18 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     protected String determineTargetUrl(Authentication authentication) {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
-            if (grantedAuthority.getAuthority().equals("ADMIN")) {
+            if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                 return "/homepage/admin";
-            } else if (grantedAuthority.getAuthority().equals("CUSTOMER")) {
+            } else if (grantedAuthority.getAuthority().equals("ROLE_CUSTOMER")) {
                 return "/homepage/customer";
-            } else if (grantedAuthority.getAuthority().equals("DRIVER")) {
+            } else if (grantedAuthority.getAuthority().equals("ROLE_DRIVER")) {
                 return "/homepage/driver";
-            } else if (grantedAuthority.getAuthority().equals("EMPLOYEE")) {
+            } else if (grantedAuthority.getAuthority().equals("ROLE_EMPLOYEE")) {
                 return "/homepage/employee";
             }
 
         }
-        throw new IllegalStateException();
+        return "/login?error";
     }
 }
 

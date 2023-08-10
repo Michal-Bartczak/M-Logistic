@@ -1,6 +1,5 @@
 package pl.coderslab.magazyn.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,17 +18,23 @@ import java.util.Collections;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private AdminRepository adminRepository;
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final AdminRepository adminRepository;
 
-    @Autowired
-    private DriverRepository driverRepository;
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+    private final CustomerRepository customerRepository;
+
+
+    private final DriverRepository driverRepository;
+
+    private final EmployeeRepository employeeRepository;
+
+    public CustomUserDetailsService(AdminRepository adminRepository, CustomerRepository customerRepository, DriverRepository driverRepository, EmployeeRepository employeeRepository) {
+        this.adminRepository = adminRepository;
+        this.customerRepository = customerRepository;
+        this.driverRepository = driverRepository;
+        this.employeeRepository = employeeRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -40,8 +45,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
     }
 
-    private BaseUser findUserByUsername(String username) {
-        BaseUser user;
+    public BaseUser findUserByUsername(String username) {
+       BaseUser user;
 
         user = adminRepository.findByUsername(username);
         if (user != null) return user;

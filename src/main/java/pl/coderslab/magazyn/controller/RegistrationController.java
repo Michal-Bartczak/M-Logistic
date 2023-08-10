@@ -43,10 +43,10 @@ public class RegistrationController {
     public String registerDriver(@ModelAttribute RegistrationForm registrationForm,
                                  BindingResult bindingResult,
                                  Model model) {
-        if (!userService.checkUniqueEmailForAllUsers(registrationForm.getEmail())) {
+        if (!userService.checkExistEmailForAllUsers(registrationForm.getEmail())) {
             bindingResult.addError(new FieldError("registrationForm", "email", "Podany email jest już zajęty"));
         }
-        if (!userService.checkUniqueUsernameForAllUsers(registrationForm.getUsername())) {
+        if (!userService.checkExistUsernameForAllUsers(registrationForm.getUsername())) {
             bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
         }
         if (bindingResult.hasErrors()) {
@@ -60,10 +60,10 @@ public class RegistrationController {
     public String registerCustomer(@ModelAttribute RegistrationForm registrationForm,
                                    BindingResult bindingResult,
                                    Model model) {
-        if (!userService.checkUniqueEmailForAllUsers(registrationForm.getEmail())) {
+        if (!userService.checkExistEmailForAllUsers(registrationForm.getEmail())) {
             bindingResult.addError(new FieldError("registrationForm", "email", "Podany email jest już zajęty"));
         }
-        if (!userService.checkUniqueUsernameForAllUsers(registrationForm.getUsername())) {
+        if (!userService.checkExistUsernameForAllUsers(registrationForm.getUsername())) {
             bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
         }
         if (bindingResult.hasErrors()) {

@@ -1,10 +1,6 @@
 package pl.coderslab.magazyn.service;
 
 import org.springframework.stereotype.Service;
-import pl.coderslab.magazyn.entity.Admin;
-import pl.coderslab.magazyn.entity.Customer;
-import pl.coderslab.magazyn.entity.Driver;
-import pl.coderslab.magazyn.entity.Employee;
 import pl.coderslab.magazyn.repository.AdminRepository;
 import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
@@ -27,7 +23,7 @@ public class UserService {
         this.driverRepository = driverRepository;
     }
 
-    public boolean checkUniqueEmailForAllUsers(String email) {
+    public boolean checkExistEmailForAllUsers(String email) {
         return Stream.of(
                         adminRepository.findByEmail(email),
                         employeeRepository.findByEmail(email),
@@ -36,7 +32,7 @@ public class UserService {
                 .allMatch(Objects::isNull);
     }
 
-    public boolean checkUniqueUsernameForAllUsers(String username){
+    public boolean checkExistUsernameForAllUsers(String username){
             return Stream.of(
                     adminRepository.findByUsername(username),
                     employeeRepository.findByUsername(username),
@@ -44,5 +40,7 @@ public class UserService {
                     customerRepository.findByUsername(username))
                             .allMatch(Objects::isNull);
     }
+
+
 
 }

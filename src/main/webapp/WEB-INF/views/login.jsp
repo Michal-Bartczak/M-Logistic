@@ -29,12 +29,12 @@
         </c:if>
 
         <c:if test="${param.logout=='true'}">
-            <div class="alert alert-missing" style="width: 30%; background-color: red; color: white"  >
+            <div class="alert alert-danger" style="width: 30%; color: white"  >
                 <p>Ta opcja jest tylko dla zalogowanych użytkowników, zaloguj się !</p>
 
             </div>
         </c:if>
-        <form action="/login" method="POST">
+        <form action="/login" method="POST" id="logForm">
             <div class="form-group">
                 <label for="username">Nazwa użytkownika</label>
                 <input type="text" class="form-control" id="username" name="username" required style="width: 30%;">

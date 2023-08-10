@@ -22,6 +22,6 @@ public class CustomerService {
         customer.setEmail(registrationForm.getEmail());
         customer.setPassword(registrationForm.getPassword());
 
-        return userPasswordEncryptor.encryptPassword(customer);
+        return userPasswordEncryptor.encryptPasswordInBaseUser(customer);
     }
 }

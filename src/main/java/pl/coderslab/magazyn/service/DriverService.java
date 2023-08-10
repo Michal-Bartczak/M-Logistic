@@ -24,7 +24,7 @@ public class DriverService {
         driver.setPassword(registrationForm.getPassword());
         driver.setName(registrationForm.getName());
         driver.setSurname(registrationForm.getSurname());
-        return userPasswordEncryptor.encryptPassword(driver);
+        return userPasswordEncryptor.encryptPasswordInBaseUser(driver);
 
 
 
