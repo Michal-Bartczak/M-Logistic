@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Component
-public class RegistrationForm {
+public class UserRegistrationDTO {
 
    @Size(min = 5, max = 15, message = "Nazwa użytkownika musi mieć od 5 do 15 znaków")
    private String username;
