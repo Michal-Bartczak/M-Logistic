@@ -6,4 +6,6 @@ import pl.coderslab.magazyn.entity.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Employee findByUsername(String username);
 
+    Employee findByEmail(String email);
+
 }

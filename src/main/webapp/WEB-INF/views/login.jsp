@@ -21,8 +21,19 @@
     <div class="container mt-5 ml-3">
         <h2 style="color: #f7403b; font-size: 3em; margin-bottom: 50px;">Logowanie</h2>
 
-        <h3 id="successLog">${registered.value}</h3>
-        <h3 id="additionalText"></h3>
+        <c:if test="${param.registered == 'true'}">
+            <div class="alert alert-success" style="width: 30%" >
+                <p>Rejestracja przebiegła pomyślnie!</p>
+                <p>Teraz możesz się zalogować</p>
+            </div>
+        </c:if>
+
+        <c:if test="${param.logout=='true'}">
+            <div class="alert alert-missing" style="width: 30%; background-color: red; color: white"  >
+                <p>Ta opcja jest tylko dla zalogowanych użytkowników, zaloguj się !</p>
+
+            </div>
+        </c:if>
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="username">Nazwa użytkownika</label>

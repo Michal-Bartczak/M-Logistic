@@ -9,4 +9,6 @@ import pl.coderslab.magazyn.entity.Employee;
 public interface AdminRepository extends JpaRepository<Admin, Long> {
     Admin findByUsername(String username);
 
+    Admin findByEmail(String email);
+
 }

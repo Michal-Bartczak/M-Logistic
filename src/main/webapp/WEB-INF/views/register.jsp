@@ -15,7 +15,7 @@
     <style>
         /* Dowolne dodatkowe style */
     </style>
-    <link rel="stylesheet" href="css/rejestracja.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/rejestracja.css" type="text/css"/>
 </head>
 <body>
 <jsp:include page="sidebarStronaGlowna.jsp"/>

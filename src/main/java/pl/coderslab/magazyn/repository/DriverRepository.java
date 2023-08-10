@@ -6,4 +6,5 @@ import pl.coderslab.magazyn.entity.Employee;
 
 public interface DriverRepository extends JpaRepository<Driver, Long> {
     Driver findByUsername(String username);
+    Driver findByEmail(String email);
 }
