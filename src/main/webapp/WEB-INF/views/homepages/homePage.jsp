@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/styleStronaGlowna.css" type="text/css"/>
 </head>
 <body>
- <jsp:include page="sidebarStronaGlowna.jsp"/>
+ <jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
     
     <div id="main">
         <div class="container text-center mt-5" style="width: 100%;">
@@ -88,4 +88,4 @@
 
 
         <script src="/js/script.js"/>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>

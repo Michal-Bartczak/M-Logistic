@@ -1,4 +1,4 @@
-package pl.coderslab.magazyn;
+package pl.coderslab.magazyn.dto;
 
 import lombok.Getter;
 import lombok.Setter;

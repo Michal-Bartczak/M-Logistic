@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/logowanie.css" type="text/css"/>
 </head>
 <body>
-<jsp:include page="sidebarStronaGlowna.jsp"/>
+<jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
 <div id="main">
     <div class="container mt-5 ml-3">
         <h2 style="color: #f7403b; font-size: 3em; margin-bottom: 50px;">Logowanie</h2>
@@ -29,9 +29,15 @@
         </c:if>
 
         <c:if test="${param.logout=='true'}">
-            <div class="alert alert-danger" style="width: 30%; color: white"  >
+            <div class="alert alert-danger" style="width: 30%; background-color: #1b203d; color: red; border: none"   >
                 <p>Ta opcja jest tylko dla zalogowanych użytkowników, zaloguj się !</p>
 
+            </div>
+        </c:if>
+        <c:if test="${param.error=='true'}">
+            <div class="alert alert-danger" style="width: 30%; background-color: #1b203d;color: red; border: none" >
+                <p>Błędny login lub hasło</p>
+                <p>Spróbuj ponownie</p>
             </div>
         </c:if>
         <form action="/login" method="POST" id="logForm">
@@ -55,4 +61,4 @@
 
 
 <script src="/js/script.js"/>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>

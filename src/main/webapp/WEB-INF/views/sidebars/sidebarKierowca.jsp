@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div id="mySidenav" class="sidenav">
   <p class="logo"><span>M</span>-Logistic</p>
   <a href="#" class="icon-a"><i class="fa fa-truck icons"></i>&nbsp;&nbsp; Lista przesyłek</a>

@@ -2,9 +2,6 @@ package pl.coderslab.magazyn.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import pl.coderslab.magazyn.entity.BaseUser;
 import pl.coderslab.magazyn.generic.UserPasswordEncryptor;
 import pl.coderslab.magazyn.service.CustomUserDetailsService;
 import pl.coderslab.magazyn.service.UserService;
@@ -25,7 +22,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "homepages/login";
     }
 
 

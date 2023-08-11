@@ -36,7 +36,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             }
 
         }
-        return "/login?error";
+        return "/login?error=true";
     }
 }
 

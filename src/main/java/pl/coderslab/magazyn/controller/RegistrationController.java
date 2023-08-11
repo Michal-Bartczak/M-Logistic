@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.magazyn.RegistrationForm;
+import pl.coderslab.magazyn.dto.UserRegistrationDTO;
 import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.service.CustomerService;
@@ -35,12 +35,12 @@ public class RegistrationController {
 
     @GetMapping
     public String showForm(Model model) {
-        model.addAttribute("registrationForm", new RegistrationForm());
-        return "register";
+        model.addAttribute("registrationForm", new UserRegistrationDTO());
+        return "homepages/register";
     }
 
     @PostMapping("/driver")
-    public String registerDriver(@ModelAttribute RegistrationForm registrationForm,
+    public String registerDriver(@ModelAttribute UserRegistrationDTO registrationForm,
                                  BindingResult bindingResult,
                                  Model model) {
         if (!userService.checkExistEmailForAllUsers(registrationForm.getEmail())) {
@@ -50,14 +50,14 @@ public class RegistrationController {
             bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
         }
         if (bindingResult.hasErrors()) {
-            return "/register";
+            return "homepages/register";
         }
         driverRepository.save(driverService.compereToDriver(registrationForm));
         return "redirect:/login?registered=true";
     }
 
     @PostMapping("/customer")
-    public String registerCustomer(@ModelAttribute RegistrationForm registrationForm,
+    public String registerCustomer(@ModelAttribute UserRegistrationDTO registrationForm,
                                    BindingResult bindingResult,
                                    Model model) {
         if (!userService.checkExistEmailForAllUsers(registrationForm.getEmail())) {
@@ -67,7 +67,7 @@ public class RegistrationController {
             bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
         }
         if (bindingResult.hasErrors()) {
-            return "register";
+            return "homepages/register";
         }
         customerRepository.save(customerService.compereToCustomer(registrationForm));
         return "redirect:/login?registered=true";

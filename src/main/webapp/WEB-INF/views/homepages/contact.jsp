@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/kontakt.css" type="text/css"/>
 </head>
 <body>
-<jsp:include page="sidebarStronaGlowna.jsp"/>
+<jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
     
     <div id="main" >
         <div class="container mt-5 ml-3">
@@ -49,4 +49,4 @@
     </div>
       </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>

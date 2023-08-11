@@ -1,4 +1,4 @@
-package pl.coderslab.magazyn.Exception;
+package pl.coderslab.magazyn.exception;
 
 public class UserNotFoundException extends Exception {
 

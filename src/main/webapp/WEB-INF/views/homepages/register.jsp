@@ -16,9 +16,10 @@
         /* Dowolne dodatkowe style */
     </style>
     <link rel="stylesheet" href="/css/rejestracja.css" type="text/css"/>
+
 </head>
 <body>
-<jsp:include page="sidebarStronaGlowna.jsp"/>
+<jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
 <div id="main">
     <div class="container mt-5 ml-3">
         <h2 style="color: #f7403b; font-size: 3em; margin-bottom: 50px;">Rejestracja</h2>
@@ -32,6 +33,7 @@
                     <label for="username">Nazwa użytkownika:</label>
                     <form:input path="username" type="text" class="form-control" id="username" name="username" required="true" style="width: 30%;" />
                     <form:errors path="username" class="error"/>
+                    <span id="usernameError" class="text-danger"></span>
                 </div>
 
 
@@ -96,8 +98,21 @@
             customerFields.style.display = "block";
         }
     }
+    let x =document.querySelector("#username")
+
+    const inputField = document.querySelector('#username');
+    const errorSpan = document.querySelector('#usernameError');
+
+    inputField.addEventListener('keyup', function() {
+        if (this.value.length < 5) {
+            errorSpan.textContent = 'Wartość jest zbyt krótka!';
+        } else {
+            errorSpan.textContent = ''; // Czyść komunikat o błędzie, gdy wartość jest poprawna
+        }
+    });
+
 </script>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>
 </body>
 </html>

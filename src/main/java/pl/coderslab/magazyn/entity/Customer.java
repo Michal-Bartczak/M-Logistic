@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @Getter
 @Table(name = "customers")
+
 public class Customer extends BaseUser {
     private String role = "CUSTOMER";
 
@@ -20,5 +21,17 @@ public class Customer extends BaseUser {
     private CustomerDetails customerDetails;
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + getId() +
+                ", username='" + getUsername() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                // pomiń hasło dla bezpieczeństwa
+                ", role='" + role + '\'' +
+                ", customerDetails=" + customerDetails +
+                ", orders=" + orders +
+                '}';
+    }
 
 }
