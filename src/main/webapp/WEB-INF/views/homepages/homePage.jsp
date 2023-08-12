@@ -87,5 +87,5 @@
         </div>
 
 
-        <script src="/js/script.js"/>
+<%--        <script src="/js/script.js"/>--%>
 <jsp:include page="../includes/footer.jsp"/>

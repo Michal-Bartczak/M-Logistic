@@ -15,6 +15,8 @@ import pl.coderslab.magazyn.service.CustomerService;
 import pl.coderslab.magazyn.service.DriverService;
 import pl.coderslab.magazyn.service.UserService;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
@@ -33,43 +35,65 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("")
     public String showForm(Model model) {
         model.addAttribute("registrationForm", new UserRegistrationDTO());
         return "homepages/register";
     }
 
     @PostMapping("/driver")
-    public String registerDriver(@ModelAttribute UserRegistrationDTO registrationForm,
+    public String registerDriver(@Valid @ModelAttribute("registrationForm") UserRegistrationDTO userRegistrationDTO,
                                  BindingResult bindingResult,
                                  Model model) {
-        if (!userService.checkExistEmailForAllUsers(registrationForm.getEmail())) {
+        if (!userService.checkExistEmailForAllUsers(userRegistrationDTO.getEmail())) {
             bindingResult.addError(new FieldError("registrationForm", "email", "Podany email jest już zajęty"));
         }
-        if (!userService.checkExistUsernameForAllUsers(registrationForm.getUsername())) {
+        if (!userService.checkExistUsernameForAllUsers(userRegistrationDTO.getUsername())) {
             bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
         }
         if (bindingResult.hasErrors()) {
+            model.addAttribute("userType", "driver");
             return "homepages/register";
         }
-        driverRepository.save(driverService.compereToDriver(registrationForm));
-        return "redirect:/login?registered=true";
+        driverRepository.save(driverService.compereToDriver(userRegistrationDTO));
+        return "redirect:/login?regi=true";
     }
 
     @PostMapping("/customer")
-    public String registerCustomer(@ModelAttribute UserRegistrationDTO registrationForm,
+    public String registerCustomer(@Valid @ModelAttribute("registrationForm") UserRegistrationDTO userRegistrationDTO,
                                    BindingResult bindingResult,
                                    Model model) {
-        if (!userService.checkExistEmailForAllUsers(registrationForm.getEmail())) {
+        if (!userService.checkExistEmailForAllUsers(userRegistrationDTO.getEmail())) {
             bindingResult.addError(new FieldError("registrationForm", "email", "Podany email jest już zajęty"));
         }
-        if (!userService.checkExistUsernameForAllUsers(registrationForm.getUsername())) {
+        if (!userService.checkExistUsernameForAllUsers(userRegistrationDTO.getUsername())) {
             bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
         }
         if (bindingResult.hasErrors()) {
+            model.addAttribute("userType", "customer");
             return "homepages/register";
         }
-        customerRepository.save(customerService.compereToCustomer(registrationForm));
-        return "redirect:/login?registered=true";
+        customerRepository.save(customerService.compereToCustomer(userRegistrationDTO));
+        return "redirect:/login?regi=true";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

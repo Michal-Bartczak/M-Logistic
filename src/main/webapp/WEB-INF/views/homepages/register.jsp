@@ -33,7 +33,7 @@
                     <label for="username">Nazwa użytkownika:</label>
                     <form:input path="username" type="text" class="form-control" id="username" name="username" required="true" style="width: 30%;" />
                     <form:errors path="username" class="error"/>
-                    <span id="usernameError" class="text-danger"></span>
+
                 </div>
 
 
@@ -77,6 +77,10 @@
 </div>
 
 <script>
+    let userType = "${userType}";
+    if(userType) {
+        changeForm(userType);
+    }
     function changeForm(usertype) {
         document.getElementById("userType").value = usertype;
         let driverButton = document.getElementById("driverButton");
@@ -98,18 +102,7 @@
             customerFields.style.display = "block";
         }
     }
-    let x =document.querySelector("#username")
 
-    const inputField = document.querySelector('#username');
-    const errorSpan = document.querySelector('#usernameError');
-
-    inputField.addEventListener('keyup', function() {
-        if (this.value.length < 5) {
-            errorSpan.textContent = 'Wartość jest zbyt krótka!';
-        } else {
-            errorSpan.textContent = ''; // Czyść komunikat o błędzie, gdy wartość jest poprawna
-        }
-    });
 
 </script>
 

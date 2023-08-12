@@ -26,13 +26,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-                return "/homepage/admin";
+                return "/admin/homepage";
             } else if (grantedAuthority.getAuthority().equals("ROLE_CUSTOMER")) {
-                return "/homepage/customer";
+                return "/customer/homepage";
             } else if (grantedAuthority.getAuthority().equals("ROLE_DRIVER")) {
-                return "/homepage/driver";
+                return "/driver/homepage";
             } else if (grantedAuthority.getAuthority().equals("ROLE_EMPLOYEE")) {
-                return "/homepage/employee";
+                return "/employee/homepage";
             }
 
         }

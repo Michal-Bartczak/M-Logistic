@@ -19,7 +19,4 @@ public class UserPasswordEncryptor {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return user;
     }
-    public String encryptOnlyPassword(String rawPassword) {
-        return encoder.encode(rawPassword);
-    }
 }

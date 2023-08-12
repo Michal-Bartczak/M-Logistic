@@ -1,5 +1,6 @@
 package pl.coderslab.magazyn.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.repository.AdminRepository;
 import pl.coderslab.magazyn.repository.CustomerRepository;
@@ -15,12 +16,14 @@ public class UserService {
     private final EmployeeRepository employeeRepository;
     private final AdminRepository adminRepository;
     private final DriverRepository driverRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(CustomerRepository customerRepository, EmployeeRepository employeeRepository, AdminRepository adminRepository, DriverRepository driverRepository) {
+    public UserService(CustomerRepository customerRepository, EmployeeRepository employeeRepository, AdminRepository adminRepository, DriverRepository driverRepository, PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.employeeRepository = employeeRepository;
         this.adminRepository = adminRepository;
         this.driverRepository = driverRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public boolean checkExistEmailForAllUsers(String email) {
@@ -40,7 +43,9 @@ public class UserService {
                     customerRepository.findByUsername(username))
                             .allMatch(Objects::isNull);
     }
-
+    public boolean isPasswordValid(String rawPassword, String hashedPassword) {
+        return passwordEncoder.matches(rawPassword, hashedPassword);
+    }
 
 
 }

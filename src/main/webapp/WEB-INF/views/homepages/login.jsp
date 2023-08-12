@@ -21,7 +21,7 @@
     <div class="container mt-5 ml-3">
         <h2 style="color: #f7403b; font-size: 3em; margin-bottom: 50px;">Logowanie</h2>
 
-        <c:if test="${param.registered == 'true'}">
+        <c:if test="${param.regi == 'true'}">
             <div class="alert alert-success" style="width: 30%" >
                 <p>Rejestracja przebiegła pomyślnie!</p>
                 <p>Teraz możesz się zalogować</p>
@@ -29,13 +29,13 @@
         </c:if>
 
         <c:if test="${param.logout=='true'}">
-            <div class="alert alert-danger" style="width: 30%; background-color: #1b203d; color: red; border: none"   >
+            <div class="alert alert-danger" style="width: 30%; background-color: #CB6B4D; color: white; border: none"   >
                 <p>Ta opcja jest tylko dla zalogowanych użytkowników, zaloguj się !</p>
 
             </div>
         </c:if>
         <c:if test="${param.error=='true'}">
-            <div class="alert alert-danger" style="width: 30%; background-color: #1b203d;color: red; border: none" >
+            <div class="alert alert-danger" style="width: 30%; background-color: #CB6B4D;color: white; border: none" >
                 <p>Błędny login lub hasło</p>
                 <p>Spróbuj ponownie</p>
             </div>
@@ -60,5 +60,5 @@
 
 
 
-<script src="/js/script.js"/>
+<%--<script src="/js/script.js"/>--%>
 <jsp:include page="../includes/footer.jsp"/>

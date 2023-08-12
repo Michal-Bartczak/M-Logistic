@@ -2,26 +2,98 @@ package pl.coderslab.magazyn.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import pl.coderslab.magazyn.generic.Converter;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.magazyn.entity.Customer;
+import pl.coderslab.magazyn.entity.CustomerDetails;
+import pl.coderslab.magazyn.entity.Order;
+import pl.coderslab.magazyn.entity.ShipmentDimensions;
 import pl.coderslab.magazyn.repository.CustomerRepository;
+import pl.coderslab.magazyn.service.CustomerDetailsService;
 import pl.coderslab.magazyn.service.CustomerService;
+import pl.coderslab.magazyn.service.UserService;
 
+import javax.validation.Valid;
+
+@RequestMapping("/customer")
 @Controller
 public class CustomerController {
     private final CustomerService customerService;
     private final CustomerRepository customerRepository;
+    private final CustomerDetailsService customerDetailsService;
+    private final UserService userService;
 
-    public CustomerController(Converter converter, CustomerService customerService, CustomerRepository customerRepository) {
+    public CustomerController(CustomerService customerService, CustomerRepository customerRepository, CustomerDetailsService customerDetailsService, UserService userService) {
         this.customerService = customerService;
         this.customerRepository = customerRepository;
+        this.customerDetailsService = customerDetailsService;
+        this.userService = userService;
+    }
+
+    @GetMapping("/homepage")
+    public String homePageCustomer(Model model) {
+        model.addAttribute("customer", customerService.getCurrentCustomerObject());
+        return "customer/homepageCustomer";
+    }
+
+    @GetMapping("/editDetails")
+    public String editCustomerDetails(Model model) {
+        model.addAttribute("customer", customerService.getCurrentCustomerObject());
+        model.addAttribute("editForm", customerService.getCurrentCustomerDetails());
+        return "/customer/editDetails";
+    }
+
+    @PostMapping("/editDetails")
+    public String saveCustomerDetails(@Valid CustomerDetails customerDetails,
+                                      BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/customer/editDetails";
+        }
+
+        Customer customer = customerService.getCurrentCustomerObject();
+        customerDetailsService.addOrUpdateWhenExistCustomerDetails(customer, customerDetails);
+        customerRepository.save(customer);
+
+        return "redirect:/customer/editDetails?update=true";
+    }
+
+    @GetMapping("/edit-password")
+    public String editPassword(Model model) {
+        model.addAttribute("customer", customerService.getCurrentCustomerObject());
+        return "/customer/editPassword";
+    }
+
+    @PostMapping("/edit-password")
+    public String saveNewPassword(@RequestParam String oldPassword,
+                                  @RequestParam String newPassword
+    ) {
+
+
+        Customer customer = customerService.getCurrentCustomerObject();
+        if (userService.isPasswordValid(oldPassword, customer.getPassword())) {
+            customer.setPassword(newPassword);
+            customerRepository.save(customer);
+            return "redirect:/customer/edit-password?save=true";
+        }
+        return "redirect:/customer/edit-password?save=false";
 
     }
 
-    @GetMapping("/homepage/customer")
-    public String homePageCustomer(Model model){
-        model.addAttribute("customer",customerRepository.findByUsername(customerService.getCurrentUsername()));
-        return "/customer/logInCustomer";
+    @GetMapping("/send")
+    public String sendPackage(Model model) {
+        model.addAttribute("customer", customerService.getCurrentCustomerObject());
+        model.addAttribute("dimensions", ShipmentDimensions.values());
+        model.addAttribute("detailsPackage", new Order());
+        return "/customer/sendPackage";
+    }
+
+    @PostMapping("/send")
+    public String saveSendPackage(@Valid @ModelAttribute("detailsPackage") Order order,
+                                  BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:customer/sendPackage?sent=false";
+        }
+        customerService.addSendPackageCustomer(order);
+        return "redirect:/customer/send?sent=true";
     }
 }

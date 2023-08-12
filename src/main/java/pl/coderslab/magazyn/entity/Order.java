@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ public class Order {
     private ShipmentDimensions dimensions;
     @NotNull
     private String weigh;
-    @NotNull
+    @Min(100)
     private BigDecimal price;
     private LocalDate creationDate =LocalDate.now();
     @Enumerated(EnumType.STRING)

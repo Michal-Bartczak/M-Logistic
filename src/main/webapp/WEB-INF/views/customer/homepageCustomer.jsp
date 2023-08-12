@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Homepage-Customer</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css"/>
@@ -13,6 +13,7 @@
 
 </head>
 <style>
+
     .col-div-3{
         margin-bottom: 10px;
     }
@@ -66,7 +67,7 @@
 <body>
 
 <jsp:include page="../sidebars/sidebarCustomer.jsp"/>
-
+<div class="content-wrapper">
 <div id="main">
     <div class="head">
         <div class="col-div-6">
@@ -133,18 +134,6 @@
         </div>
     </c:forEach>
 
-
-
-    <footer>
-        <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
-    </footer>
-
-
-
 </div>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<jsp:include page="../includes/footer.jsp"/>
