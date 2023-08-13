@@ -1,8 +1,6 @@
 package pl.coderslab.magazyn.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -15,7 +13,8 @@ import java.util.Random;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "orders")
 public class Order {
     @Id
@@ -30,6 +29,8 @@ public class Order {
     private LocalDate creationDate =LocalDate.now();
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.MAGAZYN;
+    @NotNull
+    private String provider = "BRAK";
     @NotNull
     private String zipCodeRecipient;
     @NotNull

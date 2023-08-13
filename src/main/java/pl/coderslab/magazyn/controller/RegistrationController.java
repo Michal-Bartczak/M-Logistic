@@ -20,16 +20,15 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
+    private final String EMAIL_ALERT = "Podany email jest już zajęty";
+    private final String USERNAME_ALERT = "Podana nazwa użytkownika jest już zajęta";
 
-    private final DriverRepository driverRepository;
-    private final CustomerRepository customerRepository;
     private final DriverService driverService;
     private final CustomerService customerService;
     private final UserService userService;
 
-    public RegistrationController(DriverRepository driverRepository, CustomerRepository customerRepository, DriverService driverService, CustomerService customerService, UserService userService) {
-        this.driverRepository = driverRepository;
-        this.customerRepository = customerRepository;
+    public RegistrationController( DriverService driverService, CustomerService customerService, UserService userService) {
+
         this.driverService = driverService;
         this.customerService = customerService;
         this.userService = userService;
@@ -46,16 +45,16 @@ public class RegistrationController {
                                  BindingResult bindingResult,
                                  Model model) {
         if (!userService.checkExistEmailForAllUsers(userRegistrationDTO.getEmail())) {
-            bindingResult.addError(new FieldError("registrationForm", "email", "Podany email jest już zajęty"));
+            bindingResult.addError(new FieldError("registrationForm", "email", EMAIL_ALERT));
         }
         if (!userService.checkExistUsernameForAllUsers(userRegistrationDTO.getUsername())) {
-            bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
+            bindingResult.addError(new FieldError("registrationForm", "username", USERNAME_ALERT));
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("userType", "driver");
             return "homepages/register";
         }
-        driverRepository.save(driverService.compereToDriver(userRegistrationDTO));
+        driverService.saveDriverRegistration(driverService.compereToDriver(userRegistrationDTO));
         return "redirect:/login?regi=true";
     }
 
@@ -64,16 +63,16 @@ public class RegistrationController {
                                    BindingResult bindingResult,
                                    Model model) {
         if (!userService.checkExistEmailForAllUsers(userRegistrationDTO.getEmail())) {
-            bindingResult.addError(new FieldError("registrationForm", "email", "Podany email jest już zajęty"));
+            bindingResult.addError(new FieldError("registrationForm", "email", EMAIL_ALERT));
         }
         if (!userService.checkExistUsernameForAllUsers(userRegistrationDTO.getUsername())) {
-            bindingResult.addError(new FieldError("registrationForm", "username", "Podana nazwa użytkownika jest już zajęta"));
+            bindingResult.addError(new FieldError("registrationForm", "username", USERNAME_ALERT));
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("userType", "customer");
             return "homepages/register";
         }
-        customerRepository.save(customerService.compereToCustomer(userRegistrationDTO));
+        customerService.saveCustomerRegistration(customerService.compereToCustomer(userRegistrationDTO));
         return "redirect:/login?regi=true";
     }
 }

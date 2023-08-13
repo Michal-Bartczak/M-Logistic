@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <titl>Pracownik</titl>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css"/>
@@ -78,7 +78,7 @@
 
             <div class="profile">
                 <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" class="pro-img">
-                <p>${customer.username} <span>${customer.role}</span></p>
+                <p>${employee.username} <span>${employee.role}</span></p>
             </div>
 
         </div>
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    <c:forEach var="order" items="${customer.orders}" varStatus="listStatus">
+    <c:forEach var="order" items="${orderList}" varStatus="listStatus">
         <div class="col-div-3">
             <div class="accordion-header">
                 <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">
@@ -102,7 +102,7 @@
                         </div>
                         <div class="col-3 text-center">
                             <p class="list-header">Dane odbiorcy</p>
-                            <p class="list">${order.nameRecipient},${order.zipCodeRecipient} ${order.cityRecipient}, ${order.streetRecipient}</p>
+                            <p class="list">${order.nameRecipient},${order.zipCodeRecipient} ${order.cityRecipient}, ${order.streetRecipient} </p>
                         </div>
                         <div class="col-3 text-center">
                             <p class="list-header">Data utworzenia</p>
@@ -121,12 +121,13 @@
             </div>
             <div id="collapse${listStatus.index}" class="collapse" data-bs-parent="#accordionExample">
                 <div class="box row">
-                    <div class="col-2 ">${order.dimensions}</div>
+                    <div class="col-2">${order.dimensions}</div>
                     <div class="col-2 text-center">${order.price} zł</div>
+
                     <div class="col-2 text-center">${order.weigh} kg</div>
-                    <div class="col-2 text-center "><a href="#" class="link-details">List przewozowy</a></div>
+                    <div class="col-2 text-center"><a href="#" class="link-details">List przewozowy</a></div>
                     <div class="col-2 text-center"><a href="#"class="link-details">Etykieta</a></div>
-                    <div class="col-2 text-end"><a href="#"class="link-details">${order.provider}</a></div>
+                    <div class="col-2 text-end">${order.provider}</div>
                 </div>
             </div>
 
@@ -135,4 +136,16 @@
 
 
 
-<jsp:include page="../includes/footer.jsp"/>
+    <footer>
+        <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>>

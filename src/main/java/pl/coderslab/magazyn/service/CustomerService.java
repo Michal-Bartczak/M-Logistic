@@ -36,6 +36,9 @@ public class CustomerService {
 
         return userPasswordEncryptor.encryptPasswordInBaseUser(customer);
     }
+    public void saveCustomerRegistration(Customer customer){
+        customerRepository.save(customer);
+    }
     public String getCurrentUsernameForCustomer() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

@@ -20,4 +20,7 @@ public class Employee extends BaseUser{
     @Size(min=3, max = 15, message = "Nazwisko musi mieć od 3 do 15 znaków")
     private String surname;
     private String role = "EMPLOYEE";
+
+
 }
+

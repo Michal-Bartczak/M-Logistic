@@ -3,6 +3,7 @@ package pl.coderslab.magazyn.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.dto.UserRegistrationDTO;
+import pl.coderslab.magazyn.entity.Customer;
 import pl.coderslab.magazyn.entity.Driver;
 import pl.coderslab.magazyn.generic.UserPasswordEncryptor;
 import pl.coderslab.magazyn.repository.DriverRepository;
@@ -26,7 +27,8 @@ public class DriverService {
         driver.setSurname(registrationForm.getSurname());
         return userPasswordEncryptor.encryptPasswordInBaseUser(driver);
 
-
-
+    }
+    public void saveDriverRegistration(Driver driver){
+        driverRepository.save(driver);
     }
 }

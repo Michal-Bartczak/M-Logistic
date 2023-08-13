@@ -2,15 +2,14 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #1b203d;
-    overflow: auto;
+    overflow: hidden;
     font-family: system-ui;
-    display: flex;
 }
 .clearfix {
     clear: both;
 }
 .logo{
-
+    margin: 0px;
     margin-left: 28px;
     font-weight: bold;
     color: white;
@@ -74,11 +73,11 @@ body {
     border-radius: 20%;
 }
 .profile p{
-   color: white;
-   font-weight: 500;
-   margin-left: 55px;
-   margin-top: 10px;
-   font-size: 13.5px; 
+    color: white;
+    font-weight: 500;
+    margin-left: 55px;
+    margin-top: 10px;
+    font-size: 13.5px;
 }
 .profile p span{
     font-weight: 400;
@@ -91,13 +90,13 @@ body {
 }
 .col-div-3{
 
-        width: calc(100% - 60px); /* odejmujemy marginesy z obu stron */
-        float: left;
-        margin: 0 30px; /* marginesy po bokach */
-        background-color: #272c4a;/* dowolny kolor, który chcesz ustawić */
-        padding-left: 20px;
-        color: white;
-    
+    width: calc(100% - 60px); /* odejmujemy marginesy z obu stron */
+    float: left;
+    margin: 0 30px; /* marginesy po bokach */
+    background-color: #272c4a;/* dowolny kolor, który chcesz ustawić */
+    padding-left: 20px;
+    color: white;
+
 
 }
 footer {
@@ -109,24 +108,4 @@ footer {
     color: white;
     text-align: center;
     padding: 5px 0;
-    flex-shrink: 0;
 }
-.content-wrapper {
-    flex: 1 0 auto;
-    margin-bottom: 200px;/* sprawia, że zawartość strony zawsze zajmuje dostępne miejsce */
-}
-body , html {
-    height: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
