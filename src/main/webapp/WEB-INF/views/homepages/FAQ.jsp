@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/faq.css" type="text/css"/>
 </head>
 <body>
-<jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
+<jsp:include page="../sidebars/sidebarHomepage.jsp"/>
     <div class="container ml-7" style="height: 100%; max-width: 60%;">
       <h2 style="color: #f7403b; font-size: 3em; margin-top: 80px;">FAQ</h2>
         <div class="row">

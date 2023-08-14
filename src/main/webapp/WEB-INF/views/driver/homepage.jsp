@@ -65,7 +65,7 @@
 </style>
 <body>
 
-<jsp:include page="../sidebars/sidebarEmployee.jsp"/>
+<jsp:include page="../sidebars/sidebarDriver.jsp"/>
 
 <div id="main">
     <div class="head">
@@ -73,12 +73,12 @@
                 <span style="font-size: 30px; cursor: pointer;color: white;"
                       class="nav">&#9776; Dashboard</span>
             <span style="font-size: 30px;cursor: pointer;color: white;"
-                  class="nav2"> &#9776; Panel pracownika</span></div>
+                  class="nav2"> &#9776; Panel kierowcy</span></div>
         <div class="col-div-6">
 
             <div class="profile">
                 <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" class="pro-img">
-                <p>${employee.username} <span>${employee.role}</span></p>
+                <p>${driver.username} <span>${driver.role}</span></p>
             </div>
 
         </div>
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    <c:forEach var="order" items="${orderList}" varStatus="listStatus">
+    <c:forEach var="order" items="${orderlist}" varStatus="listStatus">
         <div class="col-div-3">
             <div class="accordion-header">
                 <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">
@@ -133,6 +133,7 @@
 
         </div>
     </c:forEach>
+
 
 
 <jsp:include page="../includes/footer.jsp"/>

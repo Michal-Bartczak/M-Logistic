@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/kontakt.css" type="text/css"/>
 </head>
 <body>
-<jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
+<jsp:include page="../sidebars/sidebarHomepage.jsp"/>
     
     <div id="main" >
         <div class="container mt-5 ml-3">

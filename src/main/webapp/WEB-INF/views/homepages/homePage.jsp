@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/styleStronaGlowna.css" type="text/css"/>
 </head>
 <body>
- <jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
+ <jsp:include page="../sidebars/sidebarHomepage.jsp"/>
     
     <div id="main">
         <div class="container text-center mt-5" style="width: 100%;">

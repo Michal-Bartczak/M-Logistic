@@ -19,13 +19,13 @@ import javax.validation.Valid;
 @Controller
 public class CustomerController {
     private final CustomerService customerService;
-    private final CustomerRepository customerRepository;
+
     private final CustomerDetailsService customerDetailsService;
     private final UserService userService;
 
-    public CustomerController(CustomerService customerService, CustomerRepository customerRepository, CustomerDetailsService customerDetailsService, UserService userService) {
+    public CustomerController(CustomerService customerService, CustomerDetailsService customerDetailsService, UserService userService) {
         this.customerService = customerService;
-        this.customerRepository = customerRepository;
+
         this.customerDetailsService = customerDetailsService;
         this.userService = userService;
     }
@@ -52,7 +52,6 @@ public class CustomerController {
 
         Customer customer = customerService.getCurrentCustomerObject();
         customerDetailsService.addOrUpdateWhenExistCustomerDetails(customer, customerDetails);
-        customerRepository.save(customer);
 
         return "redirect:/customer/editDetails?update=true";
     }
@@ -68,11 +67,7 @@ public class CustomerController {
                                   @RequestParam String newPassword
     ) {
 
-
-        Customer customer = customerService.getCurrentCustomerObject();
-        if (userService.isPasswordValid(oldPassword, customer.getPassword())) {
-            customer.setPassword(newPassword);
-            customerRepository.save(customer);
+        if (customerService.saveNewPasswordCustomer(oldPassword, newPassword)) {
             return "redirect:/customer/edit-password?save=true";
         }
         return "redirect:/customer/edit-password?save=false";

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/logowanie.css" type="text/css"/>
 </head>
 <body>
-<jsp:include page="../sidebars/sidebarStronaGlowna.jsp"/>
+<jsp:include page="../sidebars/sidebarHomepage.jsp"/>
 <div id="main">
     <div class="container mt-5 ml-3">
         <h2 style="color: #f7403b; font-size: 3em; margin-bottom: 50px;">Logowanie</h2>

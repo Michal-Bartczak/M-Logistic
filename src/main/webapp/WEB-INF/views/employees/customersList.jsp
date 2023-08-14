@@ -87,30 +87,30 @@
     </div>
     <div class="col-div-3 bg-secondary">
         <div class="box">
-            <h1 class="header-list">Lista przesyłek</h1>
+            <h1 class="header-list">Lista klientów</h1>
         </div>
     </div>
 
-    <c:forEach var="order" items="${orderList}" varStatus="listStatus">
+    <c:forEach var="item" items="${customers}" varStatus="listStatus">
         <div class="col-div-3">
             <div class="accordion-header">
                 <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">
                     <div class="row">
                         <div class="col-3 text-start">
-                            <p class="list-header">Numer zamówienia</p>
-                            <p class="list">${order.trackingNumber}</p>
+                            <p class="list-header">Id</p>
+                            <p class="list">${item.id}</p>
+                        </div>
+                        <div class="col-3 text-start">
+                            <p class="list-header">Dane klient</p>
+                            <p class="list">${item.customerDetails.nameCompanySender},${item.customerDetails.zipCodeSender} ${item.customerDetails.citySender}, ${item.customerDetails.citySender} </p>
                         </div>
                         <div class="col-3 text-center">
-                            <p class="list-header">Dane odbiorcy</p>
-                            <p class="list">${order.nameRecipient},${order.zipCodeRecipient} ${order.cityRecipient}, ${order.streetRecipient} </p>
-                        </div>
-                        <div class="col-3 text-center">
-                            <p class="list-header">Data utworzenia</p>
-                            <p class="list">${order.creationDate}</p>
+                            <p class="list-header">Nazwa użytkownika</p>
+                            <p class="list">${item.username}</p>
                         </div>
                         <div class="col-3 text-end">
-                            <p class="list-header">Status</p>
-                            <p class="list">${order.status}</p>
+                            <p class="list-header">Email</p>
+                            <p class="list">${item.email}</p>
                         </div>
 
 
@@ -121,13 +121,13 @@
             </div>
             <div id="collapse${listStatus.index}" class="collapse" data-bs-parent="#accordionExample">
                 <div class="box row">
-                    <div class="col-2">${order.dimensions}</div>
-                    <div class="col-2 text-center">${order.price} zł</div>
+                    <div class="col-2"></div>
+                    <div class="col-2 text-center"></div>
 
-                    <div class="col-2 text-center">${order.weigh} kg</div>
-                    <div class="col-2 text-center"><a href="#" class="link-details">List przewozowy</a></div>
-                    <div class="col-2 text-center"><a href="#" class="link-details">Etykieta</a></div>
-                    <div class="col-2 text-end">${order.provider}</div>
+                    <div class="col-2 text-center"></div>
+                    <div class="col-2 text-center"><a href="#" class="link-details"></a></div>
+                    <div class="col-2 text-center"><a href="#" class="link-details"></a></div>
+                    <div class="col-2 text-end"></div>
                 </div>
             </div>
 
@@ -135,4 +135,17 @@
     </c:forEach>
 
 
-<jsp:include page="../includes/footer.jsp"/>
+
+    <footer>
+        <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>>
