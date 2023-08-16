@@ -92,47 +92,49 @@
     </div>
 
     <c:forEach var="order" items="${customer.orders}" varStatus="listStatus">
-        <div class="col-div-3">
-            <div class="accordion-header">
-                <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">
-                    <div class="row">
-                        <div class="col-3 text-start">
-                            <p class="list-header">Numer zamówienia</p>
-                            <p class="list">${order.trackingNumber}</p>
-                        </div>
-                        <div class="col-3 text-center">
-                            <p class="list-header">Dane odbiorcy</p>
-                            <p class="list">${order.nameRecipient},${order.zipCodeRecipient} ${order.cityRecipient}, ${order.streetRecipient}</p>
-                        </div>
-                        <div class="col-3 text-center">
-                            <p class="list-header">Data utworzenia</p>
-                            <p class="list">${order.creationDate}</p>
-                        </div>
-                        <div class="col-3 text-end">
-                            <p class="list-header">Status</p>
-                            <p class="list">${order.status}</p>
-                        </div>
-
-
-
-
+    <div class="col-div-3">
+        <div class="accordion-header">
+            <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">
+                <div class="row">
+                    <div class="col-3 text-start">
+                        <p class="list-header">Numer zamówienia</p>
+                        <p class="list">${order.trackingNumber}</p>
                     </div>
-                </button>
-            </div>
-            <div id="collapse${listStatus.index}" class="collapse" data-bs-parent="#accordionExample">
-                <div class="box row">
-                    <div class="col-2 ">${order.dimensions}</div>
-                    <div class="col-2 text-center">${order.price} zł</div>
-                    <div class="col-2 text-center">${order.weigh} kg</div>
-                    <div class="col-2 text-center "><a href="#" class="link-details">List przewozowy</a></div>
-                    <div class="col-2 text-center"><a href="#"class="link-details">Etykieta</a></div>
-                    <div class="col-2 text-end"><a href="#"class="link-details">${order.provider}</a></div>
-                </div>
-            </div>
+                    <div class="col-3 text-center">
+                        <p class="list-header">Dane odbiorcy</p>
+                        <p class="list">${order.nameRecipient},${order.zipCodeRecipient} ${order.cityRecipient}, ${order.streetRecipient}</p>
+                    </div>
+                    <div class="col-3 text-center">
+                        <p class="list-header">Data utworzenia</p>
+                        <p class="list">${order.creationDate}</p>
+                    </div>
+                    <div class="col-3 text-end">
+                        <p class="list-header">Status</p>
+                        <p class="list">${order.status}</p>
+                    </div>
 
+
+
+
+                </div>
+            </button>
         </div>
+        <div id="collapse${listStatus.index}" class="collapse" data-bs-parent="#accordionExample">
+            <div class="box row">
+                <div class="col-2 ">${order.dimensions}</div>
+                <div class="col-2 text-center">${order.price} zł</div>
+                <div class="col-2 text-center">${order.weigh} kg</div>
+                <div class="col-2 text-center "><a href="#" class="link-details">List przewozowy</a></div>
+                <div class="col-2 text-center">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#shippingLabelModal" id="trackingNumberButton" onclick="fetchLabelData('${order.trackingNumber}')" class="link-details">Etykieta</a>
+                </div>
+                <div class="col-2 text-end"><a href="#"class="link-details">${order.provider}</a></div>
+            </div>
+        </div>
+
+    </div>
     </c:forEach>
 
 
 
-<jsp:include page="../includes/footer.jsp"/>
+<jsp:include page="../includes/footerWithModal.jsp"/>

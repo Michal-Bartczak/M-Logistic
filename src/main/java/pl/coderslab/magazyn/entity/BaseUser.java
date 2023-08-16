@@ -16,7 +16,15 @@ import javax.validation.constraints.*;
 public class BaseUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "entity_seq")
+    @TableGenerator(
+            name = "entity_seq",
+            table = "SEQUENCE_TABLE",
+            pkColumnName = "SEQ_NAME",
+            valueColumnName = "SEQ_VALUE",
+            pkColumnValue = "BASE_USER_SEQ",
+            allocationSize = 1
+    )
     private Long id;
 
     @Column(unique = true)

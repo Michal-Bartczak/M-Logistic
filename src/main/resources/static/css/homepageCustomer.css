@@ -195,4 +195,11 @@ footer {
         margin: 0;
         padding: 0;
     }
+
+    /* Twoje istniejące style związane z tabelą w modalu */
+    .modalTable_container, .modalTable_row, .modalTable_col-3, .modalTable_col-6, .modalTable_col-12, .modalTable_col-50, .modalTable_footer, .modalTable_barcode {
+        /* Stosuj swoje style bez żadnych zmian */
+    }
+
+    /* Jeśli chcesz uwzględnić więcej stylów podczas drukowania, dodaj je tutaj */
 }

@@ -20,5 +20,7 @@ public class OrderService {
     public List<Order> getAllOrdersSortedByCreationDate() {
         return orderRepository.findAllByOrderByCreationDateDesc();
     }
-
+    public Order getOrderByTrackingNumber(String trackingNumber){
+        return orderRepository.findByTrackingNumber(trackingNumber);
+    }
 }
