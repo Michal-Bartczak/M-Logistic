@@ -2,6 +2,7 @@ package pl.coderslab.magazyn.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import pl.coderslab.magazyn.entity.Order;
 import pl.coderslab.magazyn.entity.OrderStatus;
 
@@ -14,6 +15,10 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findAllSortedByStatusAndProvider();
     
     Order findByTrackingNumber(String trackingNumber);
+
+    @Query("SELECT o FROM Order o WHERE o.customer.id = :customerId ORDER BY o.creationDate DESC")
+    List<Order> findAllByCustomerIdOrderByCreationDate(@Param("customerId") Long customerId);
+
 
 
 }

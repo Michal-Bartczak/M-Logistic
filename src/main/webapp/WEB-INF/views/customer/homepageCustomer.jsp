@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    <c:forEach var="order" items="${customer.orders}" varStatus="listStatus">
+    <c:forEach var="order" items="${orderList}" varStatus="listStatus">
     <div class="col-div-3">
         <div class="accordion-header">
             <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">

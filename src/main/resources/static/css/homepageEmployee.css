@@ -371,7 +371,7 @@ footer {
     margin: 10px;
 }
 /* Styl dla select */
-.select-custom {
+.driverSelect {
     width: 100%; /* Pełna szerokość kontenera */
     padding: 10px; /* Dodajemy trochę wewnętrznego marginesu dla wygody */
     background-color: #272c4a; /* Kolor tła */
@@ -388,7 +388,7 @@ footer {
 }
 
 /* Styl dla select w stanie hover */
-.select-custom:hover {
+.driverSelect:hover {
     background-color: #1b203d;
 }
 

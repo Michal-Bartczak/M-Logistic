@@ -1,4 +1,4 @@
-package pl.coderslab.magazyn.controller;
+package pl.coderslab.magazyn.controller.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

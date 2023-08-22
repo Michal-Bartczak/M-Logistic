@@ -2,8 +2,10 @@ package pl.coderslab.magazyn.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.coderslab.magazyn.entity.Customer;
 import pl.coderslab.magazyn.entity.Driver;
 import pl.coderslab.magazyn.entity.Order;
+import pl.coderslab.magazyn.entity.OrderStatus;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.repository.OrderRepository;
 
@@ -14,12 +16,14 @@ import java.util.Optional;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final DriverRepository driverRepository;
+    private final CustomerService customerService;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, CustomerService customerService, DriverRepository driverRepository){
+    public OrderService(OrderRepository orderRepository, CustomerService customerService, DriverRepository driverRepository, CustomerService customerService1){
         this.orderRepository=orderRepository;
 
         this.driverRepository = driverRepository;
+        this.customerService = customerService1;
     }
     public List<Order> getAllOrdersSortedByCreationDate() {
         return orderRepository.findAllByOrderByCreationDateDesc();
@@ -38,7 +42,13 @@ public class OrderService {
         }
         Order order = orderOptional.get();
         Driver driver = driverOptional.get();
+        order.setStatus(OrderStatus.DOSTAWA);
         order.setProvider(driver.getUsername());
         return orderRepository.save(order);
+    }
+    public List<Order> getAllOrdersByCustomerIdSortedByDate(){
+        Customer customer = customerService.getCurrentCustomerObject();
+
+        return orderRepository.findAllByCustomerIdOrderByCreationDate(customer.getId());
     }
 }

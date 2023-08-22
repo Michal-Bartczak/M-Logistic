@@ -8,9 +8,9 @@ import pl.coderslab.magazyn.entity.Customer;
 import pl.coderslab.magazyn.entity.CustomerDetails;
 import pl.coderslab.magazyn.entity.Order;
 import pl.coderslab.magazyn.entity.ShipmentDimensions;
-import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.service.CustomerDetailsService;
 import pl.coderslab.magazyn.service.CustomerService;
+import pl.coderslab.magazyn.service.OrderService;
 import pl.coderslab.magazyn.service.UserService;
 
 import javax.validation.Valid;
@@ -22,17 +22,20 @@ public class CustomerController {
 
     private final CustomerDetailsService customerDetailsService;
     private final UserService userService;
+    private final OrderService orderService;
 
-    public CustomerController(CustomerService customerService, CustomerDetailsService customerDetailsService, UserService userService) {
+    public CustomerController(CustomerService customerService, CustomerDetailsService customerDetailsService, UserService userService, OrderService orderService) {
         this.customerService = customerService;
 
         this.customerDetailsService = customerDetailsService;
         this.userService = userService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/homepage")
     public String homePageCustomer(Model model) {
         model.addAttribute("customer", customerService.getCurrentCustomerObject());
+        model.addAttribute("orderList", orderService.getAllOrdersByCustomerIdSortedByDate());
         return "customer/homepageCustomer";
     }
 

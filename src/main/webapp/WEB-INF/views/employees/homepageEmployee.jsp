@@ -131,7 +131,7 @@
                         <a href="#" data-bs-toggle="modal" data-bs-target="#shippingLabelModal" id="trackingNumberButton" onclick="fetchLabelData('${order.trackingNumber}')" class="link-details">Etykieta</a>
                     </div>
                     <div class="col-2 text-end">
-                        <select class="select-custom" data-order-id="${order.id}">
+                        <select class="driverSelect" data-order-id="${order.id}">
 
                         <option value="${order.provider}">${order.provider}</option>
 
@@ -159,5 +159,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/js/shippingLabelEmployee.js"></script>
+<script src="/js/swapProvider.js"></script>
 </body>
 </html>
