@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="/css/styleZalogowanyAdmin.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/homepageEmployee.css" type="text/css"/>
 
 </head>
 <style>
@@ -125,14 +125,39 @@
                     <div class="col-2 text-center">${order.price} zł</div>
 
                     <div class="col-2 text-center">${order.weigh} kg</div>
-                    <div class="col-2 text-center"><a href="#" class="link-details">List przewozowy</a></div>
-                    <div class="col-2 text-center"><a href="#" class="link-details">Etykieta</a></div>
-                    <div class="col-2 text-end">${order.provider}</div>
+                    <div class="col-2 text-center ">
+                        <a href="#" data-bs-toggle="modal-lp" id="trackingNumberButton-lp" onclick="fetchDataLp('${order.trackingNumber}')"  class="link-details-lp">List przewozowy</a></div>
+                    <div class="col-2 text-center">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#shippingLabelModal" id="trackingNumberButton" onclick="fetchLabelData('${order.trackingNumber}')" class="link-details">Etykieta</a>
+                    </div>
+                    <div class="col-2 text-end">
+                        <select class="select-custom" data-order-id="${order.id}">
+
+                        <option value="${order.provider}">${order.provider}</option>
+
+                            <c:forEach items="${driversList}" var="driver">
+                                <option value="${driver.id}">${driver.name} ${driver.surname}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
                 </div>
             </div>
 
         </div>
     </c:forEach>
 
+    <footer>
+        <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+    </footer>
 
-<jsp:include page="../includes/footer.jsp"/>
+</div>
+<jsp:include page="../modals/shippingLabelModal.jsp"/>
+<jsp:include page="../modals/wayBillModal.jsp"/>
+
+<script src="/js/bootstrap/bootstrap.bundle.min.js"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/shippingLabelEmployee.js"></script>
+</body>
+</html>

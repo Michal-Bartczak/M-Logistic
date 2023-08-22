@@ -30,5 +30,7 @@ public class ShippingLabelDTO {
     private String streetSender;
 
     private LocalDate orderCreated;
+    private String dimensions;
+    private String barcode;
 
 }

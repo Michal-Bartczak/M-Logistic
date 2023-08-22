@@ -211,7 +211,7 @@ footer {
         top: 0;
         width: 100%;
         height: 100%;
-       margin: 0;
+        margin: 0;
         padding: 0;
     }
 
@@ -220,7 +220,7 @@ footer {
         display: flex;
         flex-direction: column;
         height: 100%;
-       /* Lekkie marginesy */
+        /* Lekkie marginesy */
     }
 
     /*.modalTable_row {*/
@@ -370,3 +370,43 @@ footer {
 .margin-10 {
     margin: 10px;
 }
+/* Styl dla select */
+.select-custom {
+    width: 100%; /* Pełna szerokość kontenera */
+    padding: 10px; /* Dodajemy trochę wewnętrznego marginesu dla wygody */
+    background-color: #272c4a; /* Kolor tła */
+    color: #f1f1f1; /* Kolor tekstu */
+    font-size: 16px; /* Wielkość czcionki */
+    border: none; /* Usuwamy domyślną ramkę */
+    border-radius: 5px; /* Delikatne zaokrąglenie krawędzi */
+    cursor: pointer; /* Kursor wskazujący */
+    transition: 0.3s; /* Animacja przejścia dla efektów hover */
+    font-family: system-ui; /* Czcionka, aby dopasować do reszty strony */
+    appearance: none; /* Usuwamy domyślny wygląd select dla niektórych przeglądarek */
+    -webkit-appearance: none; /* Dla Webkit przeglądarek */
+    -moz-appearance: none; /* Dla Firefox */
+}
+
+/* Styl dla select w stanie hover */
+.select-custom:hover {
+    background-color: #1b203d;
+}
+
+/* Styl dla strzałki rozwijania select - możemy ją dostosować, ale to wymaga dodatkowej pracy */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-wrapper:after {
+    content: "\25BC"; /* Strzałka w dół */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #f1f1f1;
+    pointer-events: none; /* Dzięki temu kliknięcie na strzałkę nie wpłynie na zachowanie */
+}
+
+/* Używając powyższych stylów, możemy osadzić select wewnątrz .select-wrapper dla odpowiedniego wyglądu */

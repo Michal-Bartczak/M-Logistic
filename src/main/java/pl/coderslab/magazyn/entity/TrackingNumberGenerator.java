@@ -7,7 +7,7 @@ public class TrackingNumberGenerator {
 
      static String generateTrackingNumber() {
         String generatedNumber = "200";
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             generatedNumber += random.nextInt(10);
         }
         return generatedNumber;

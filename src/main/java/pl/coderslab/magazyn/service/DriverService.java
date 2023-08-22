@@ -67,4 +67,7 @@ public class DriverService {
         }
         return false;
     }
+    public List<Driver> getAllDrivers(){
+        return driverRepository.findAll();
+    }
 }

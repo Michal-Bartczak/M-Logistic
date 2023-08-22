@@ -1,5 +1,6 @@
 package pl.coderslab.magazyn.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class Order {
     private String nameRecipient;
 
     private String trackingNumber = TrackingNumberGenerator.generateTrackingNumber();
+    @JsonIgnore
     @ManyToOne
     private Customer customer;
 

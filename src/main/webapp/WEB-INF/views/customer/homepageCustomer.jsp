@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="/css/styleZalogowanyAdmin.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/homepageCustomer.css" type="text/css"/>
 
 </head>
 <style>
@@ -124,7 +124,8 @@
                 <div class="col-2 ">${order.dimensions}</div>
                 <div class="col-2 text-center">${order.price} zł</div>
                 <div class="col-2 text-center">${order.weigh} kg</div>
-                <div class="col-2 text-center "><a href="#" class="link-details">List przewozowy</a></div>
+                <div class="col-2 text-center ">
+                    <a href="#" data-bs-toggle="modal-lp" id="trackingNumberButton-lp" onclick="fetchDataLp('${order.trackingNumber}')"  class="link-details-lp">List przewozowy</a></div>
                 <div class="col-2 text-center">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#shippingLabelModal" id="trackingNumberButton" onclick="fetchLabelData('${order.trackingNumber}')" class="link-details">Etykieta</a>
                 </div>
