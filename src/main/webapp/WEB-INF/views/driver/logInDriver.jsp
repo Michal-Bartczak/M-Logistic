@@ -92,7 +92,7 @@
     </div>
 
     <c:forEach var="order" items="${orderlist}" varStatus="listStatus">
-        <div class="col-div-3">
+        <div class="col-div-3" id="item-order">
             <div class="accordion-header">
                 <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">
                     <div class="row">
@@ -125,8 +125,13 @@
                     <div class="col-2 text-center">${order.price} zł</div>
 
                     <div class="col-2 text-center">${order.weigh} kg</div>
-                    <div class="col-2 text-center"><a href="#" class="link-details">List przewozowy</a></div>
-                    <div class="col-2 text-center"><a href="#" class="link-details">Etykieta</a></div>
+                    <div class="col-2 text-center">
+                        <button type="button" class="btn btn-success" data-order-id="${order.id}">DOSTARCZONO</button>
+                    </div>
+                    <div class="col-2 text-center">
+                        <button type="button" class="btn btn-danger" data-order-id="${order.id}">NIE DOSTARCZONO</button>
+                    </div>
+
                     <div class="col-2 text-end">${order.provider}</div>
                 </div>
             </div>
@@ -136,4 +141,14 @@
 
 
 
-<jsp:include page="../includes/footer.jsp"/>
+
+    <footer>
+        <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/js/driverOrderProvide.js"></script>
+
+</body>
+</html>

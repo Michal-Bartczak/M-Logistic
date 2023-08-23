@@ -18,11 +18,11 @@ public class DriverController {
     }
 
 
-    @GetMapping("homepage")
+    @GetMapping("/homepage")
     public String showHomepage(Model model){
         model.addAttribute("driver", driverService.getCurrentDriverObject());
         model.addAttribute("orderlist", driverService.getAllOrdersForCurrentDriver());
-        return "/driver/homepage";
+        return "/driver/logInDriver";
     }
     @GetMapping("/edit-password")
     public String editPasswordDriver(Model model){

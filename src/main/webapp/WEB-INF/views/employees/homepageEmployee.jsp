@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,42 +13,51 @@
 
 </head>
 <style>
-    .col-div-3{
+    .col-div-3 {
         margin-bottom: 10px;
     }
-    h1{
+
+    h1 {
         color: white;
         text-decoration: none;
     }
-    .list{
+
+    .list {
         font-size: 14px;
         color: #6c757d;
     }
-    .header-list{
+
+    .header-list {
         padding-top: 10px;
 
     }
+
     button.btn.btn-link {
         text-decoration: none;
     }
-    .list-header{
+
+    .list-header {
         font-size: large;
         color: white;
     }
+
     .col-div-3 .btn {
         width: 100%;
         display: block;
     }
+
     .row {
         margin: 0;
         padding: 0;
     }
-    .link-details{
+
+    .link-details {
         color: white;
         text-decoration: none;
     }
+
     .link-details:hover {
-        color: green;  /* Możesz również użyć konkretnego kodu koloru, np. #00FF00 dla zielonego */
+        color: green; /* Możesz również użyć konkretnego kodu koloru, np. #00FF00 dla zielonego */
     }
 
 
@@ -59,7 +68,6 @@
         height: 100%;
         width: 100%;
     }
-
 
 
 </style>
@@ -91,10 +99,44 @@
         </div>
     </div>
 
+    <div class="col-div-3 filter-container bg-secondary">
+        <div class="row">
+            <div class="col-3">
+        <input type="text" name="filter-text" id="filter-text" placeholder="Wpisz numer zamówienia">
+            </div>
+        <div class="col-3 text-center">DATA
+               <input type="date" name="filter-data" id="filter-data" placeholder="DD-MM-RRRR">
+        </div>
+            <div class="col-3 text-center">
+                <label for="status">STATUS</label>
+                <select name="status" id="status">
+                    <option value="MAGAZYN">MAGAZYN</option>
+                    <option value="DOSTAWA">DOSTAWA</option>
+                    <option value="DOSTARCZONO">DOSTARCZONO</option>
+                </select>
+            </div>
+            <div class="col-3 text-end">
+                <label class="dimension-filter">RODZAJ</label>
+                <label for="rodzaj-eur">EUR</label>
+                <input type="checkbox" name="rodzaj" id="rodzaj-eur" value="EUR" checked>
+
+                <label for="rodzaj-hp">HP</label>
+                <input type="checkbox" name="rodzaj" id="rodzaj-hp" value="HP" checked>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
     <c:forEach var="order" items="${orderList}" varStatus="listStatus">
         <div class="col-div-3">
             <div class="accordion-header">
-                <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${listStatus.index}" aria-expanded="true" aria-controls="collapse${listStatus.index}">
+                <button class="btn btn-link" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse${listStatus.index}" aria-expanded="true"
+                        aria-controls="collapse${listStatus.index}">
                     <div class="row">
                         <div class="col-3 text-start">
                             <p class="list-header">Numer zamówienia</p>
@@ -114,8 +156,6 @@
                         </div>
 
 
-
-
                     </div>
                 </button>
             </div>
@@ -126,14 +166,18 @@
 
                     <div class="col-2 text-center">${order.weigh} kg</div>
                     <div class="col-2 text-center ">
-                        <a href="#" data-bs-toggle="modal-lp" id="trackingNumberButton-lp" onclick="fetchDataLp('${order.trackingNumber}')"  class="link-details-lp">List przewozowy</a></div>
+                        <a href="#" data-bs-toggle="modal-lp" id="trackingNumberButton-lp"
+                           onclick="fetchDataLp('${order.trackingNumber}')" class="link-details-lp">List przewozowy</a>
+                    </div>
                     <div class="col-2 text-center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#shippingLabelModal" id="trackingNumberButton" onclick="fetchLabelData('${order.trackingNumber}')" class="link-details">Etykieta</a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#shippingLabelModal"
+                           id="trackingNumberButton" onclick="fetchLabelData('${order.trackingNumber}')"
+                           class="link-details">Etykieta</a>
                     </div>
                     <div class="col-2 text-end">
                         <select class="driverSelect" data-order-id="${order.id}">
 
-                        <option value="${order.provider}">${order.provider}</option>
+                            <option value="${order.provider}">${order.provider}</option>
 
                             <c:forEach items="${driversList}" var="driver">
                                 <option value="${driver.id}">${driver.name} ${driver.surname}</option>
@@ -147,11 +191,11 @@
         </div>
     </c:forEach>
 
-    <footer>
-        <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
-    </footer>
-
 </div>
+<footer>
+    <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
 <jsp:include page="../modals/shippingLabelModal.jsp"/>
 <jsp:include page="../modals/wayBillModal.jsp"/>
 

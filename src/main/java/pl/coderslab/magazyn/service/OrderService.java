@@ -19,23 +19,27 @@ public class OrderService {
     private final CustomerService customerService;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, CustomerService customerService, DriverRepository driverRepository, CustomerService customerService1){
-        this.orderRepository=orderRepository;
+    public OrderService(OrderRepository orderRepository, CustomerService customerService, DriverRepository driverRepository, CustomerService customerService1) {
+        this.orderRepository = orderRepository;
 
         this.driverRepository = driverRepository;
         this.customerService = customerService1;
     }
+
     public List<Order> getAllOrdersSortedByCreationDate() {
         return orderRepository.findAllByOrderByCreationDateDesc();
     }
-    public Order getOrderByTrackingNumber(String trackingNumber){
+
+    public Order getOrderByTrackingNumber(String trackingNumber) {
         return orderRepository.findByTrackingNumber(trackingNumber);
     }
-    public List<Order> getAllOrdersSortedByStatusAndProvider(){
+
+    public List<Order> getAllOrdersSortedByStatusAndProvider() {
         return orderRepository.findAllSortedByStatusAndProvider();
     }
-    public Order updateOrderProvider(Long orderId, Long driverId ){
-       Optional<Order> orderOptional = orderRepository.findById(orderId);
+
+    public Order updateOrderProvider(Long orderId, Long driverId) {
+        Optional<Order> orderOptional = orderRepository.findById(orderId);
         Optional<Driver> driverOptional = driverRepository.findById(driverId);
         if (orderOptional.isEmpty() || driverOptional.isEmpty()) {
             throw new RuntimeException("Order or Driver not found");
@@ -46,9 +50,27 @@ public class OrderService {
         order.setProvider(driver.getUsername());
         return orderRepository.save(order);
     }
-    public List<Order> getAllOrdersByCustomerIdSortedByDate(){
+
+    public List<Order> getAllOrdersByCustomerIdSortedByDate() {
         Customer customer = customerService.getCurrentCustomerObject();
 
         return orderRepository.findAllByCustomerIdOrderByCreationDate(customer.getId());
     }
+
+    public void updateStatusOrderAfterDelivery(Long orderId, String updateStatus) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        Order order = optionalOrder.orElseThrow(() -> new RuntimeException("Order not found for ID: " + orderId));
+
+        if (updateStatus.equals("DOSTARCZONO")) {
+            order.setStatus(OrderStatus.DOSTARCZONO);
+        } else if (updateStatus.equals("NIE DOSTARCZONO")) {
+            order.setStatus(OrderStatus.MAGAZYN);
+            order.setProvider("BRAK");
+        } else {
+            throw new IllegalArgumentException("Unknown updateStatus value: " + updateStatus);
+        }
+
+        orderRepository.save(order);
+    }
+
 }

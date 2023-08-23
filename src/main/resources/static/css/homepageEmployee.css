@@ -2,7 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #1b203d;
-    overflow: hidden;
+    /*overflow: hidden;*/
     font-family: system-ui;
 }
 
@@ -124,6 +124,8 @@ footer {
     color: white;
     text-align: center;
     padding: 5px 0;
+
+
 }
 
 #shippingLabelModal .modal-dialog {
@@ -408,5 +410,17 @@ footer {
     color: #f1f1f1;
     pointer-events: none; /* Dzięki temu kliknięcie na strzałkę nie wpłynie na zachowanie */
 }
-
-/* Używając powyższych stylów, możemy osadzić select wewnątrz .select-wrapper dla odpowiedniego wyglądu */
+input[type="text"],
+input[type="date"],
+select[name="status"],
+input[type="checkbox"]{
+    background-color: #3a3e44;
+    color: white;
+}
+input[type="checkbox"] {
+    /* Dodaj dodatkowy odstęp, aby lepiej oddzielić checkboxy od innych pól */
+    margin-right: 5px;
+}
+.dimension-filter{
+    margin-right: 10px;
+}
