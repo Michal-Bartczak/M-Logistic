@@ -1,4 +1,4 @@
-package pl.coderslab.magazyn;
+package pl.coderslab.magazyn.generators;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

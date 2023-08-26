@@ -21,9 +21,6 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findAllByCustomerIdOrderByCreationDate(@Param("customerId") Long customerId);
     List<Order> findByTrackingNumberContaining(String trackingNumber);
 
-    List<Order> findByCreationDate(LocalDate creationDate);
-
-    List<Order> findByStatus(OrderStatus status);
 
 
 

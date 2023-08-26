@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.dto.FilterOrderDTO;
 import pl.coderslab.magazyn.entity.*;
+import pl.coderslab.magazyn.repository.CustomOrderRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.repository.OrderRepository;
 
@@ -15,19 +16,19 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final DriverRepository driverRepository;
+    private final CustomOrderRepository customOrderRepository;
     private final CustomerService customerService;
 
+
     @Autowired
-    public OrderService(OrderRepository orderRepository, CustomerService customerService, DriverRepository driverRepository, CustomerService customerService1) {
+    public OrderService(OrderRepository orderRepository, DriverRepository driverRepository, CustomOrderRepository customOrderRepository, CustomerService customerService) {
         this.orderRepository = orderRepository;
-
         this.driverRepository = driverRepository;
-        this.customerService = customerService1;
+
+        this.customOrderRepository = customOrderRepository;
+        this.customerService = customerService;
     }
 
-    public List<Order> getAllOrdersSortedByCreationDate() {
-        return orderRepository.findAllByOrderByCreationDateDesc();
-    }
 
     public Order getOrderByTrackingNumber(String trackingNumber) {
         return orderRepository.findByTrackingNumber(trackingNumber);
@@ -109,6 +110,9 @@ public class OrderService {
         }
 
         return filterList;
+    }
+    public List<Order> filterOrders(FilterOrderDTO filter) {
+        return customOrderRepository.orderFilter(filter);
     }
 
 }

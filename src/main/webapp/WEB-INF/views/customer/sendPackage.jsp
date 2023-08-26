@@ -34,10 +34,15 @@
 
     <div class="clearfix"></div>
   </div>
-  <!--...-->
+
   <div class="container mt-5 ml-3">
     <h2 style="color: #f7403b; font-size: 3em; margin-bottom: 50px;">Wyślij paczkę</h2>
-    <!-- ... Twoje powiadomienia ... -->
+
+    <c:if test="${param.sent=='true'}">
+    <div class="alert alert-success" style="width: 30%; background-color: rgba(21,82,47,0.22); color: white; border: none"   >
+      <p>Twoja paczka została wysłana !</p>
+    </div>
+    </c:if>
     <form action="/customer/send" method="post" id="orderForm">
       <div class="row"> <!-- Dodajemy wiersz -->
         <div class="col-md-6"> <!-- Pierwsza połowa formularza -->
@@ -93,6 +98,11 @@
 
 </div>
 
-  <jsp:include page="../includes/footer.jsp"/>
+<footer>
+  <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+</footer>
+<script src="/js/swapProvider.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>

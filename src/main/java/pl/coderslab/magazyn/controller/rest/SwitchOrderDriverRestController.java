@@ -44,7 +44,7 @@ public class SwitchOrderDriverRestController {
 
     @PostMapping("employee/filter")
     public ResponseEntity<?> filterOrders(@RequestBody FilterOrderDTO filter){
-        List<Order> filteredOrders = orderService.orderFilter(filter);
+        List<Order> filteredOrders = orderService.filterOrders(filter);
         OrderFilterResponse response = new OrderFilterResponse();
 
         if (filteredOrders.isEmpty()) {

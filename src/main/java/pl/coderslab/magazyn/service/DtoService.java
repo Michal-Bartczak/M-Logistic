@@ -2,7 +2,7 @@ package pl.coderslab.magazyn.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.coderslab.magazyn.BarCodeGenerator;
+import pl.coderslab.magazyn.generators.BarCodeGenerator;
 import pl.coderslab.magazyn.dto.ShippingLabelDTO;
 import pl.coderslab.magazyn.entity.Customer;
 import pl.coderslab.magazyn.entity.CustomerDetails;
