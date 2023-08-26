@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import pl.coderslab.magazyn.entity.Order;
 import pl.coderslab.magazyn.entity.OrderStatus;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order,Long> {
@@ -18,6 +19,11 @@ public interface OrderRepository extends JpaRepository<Order,Long> {
 
     @Query("SELECT o FROM Order o WHERE o.customer.id = :customerId ORDER BY o.creationDate DESC")
     List<Order> findAllByCustomerIdOrderByCreationDate(@Param("customerId") Long customerId);
+    List<Order> findByTrackingNumberContaining(String trackingNumber);
+
+    List<Order> findByCreationDate(LocalDate creationDate);
+
+    List<Order> findByStatus(OrderStatus status);
 
 
 

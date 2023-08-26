@@ -2,15 +2,14 @@ package pl.coderslab.magazyn.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.coderslab.magazyn.entity.Customer;
-import pl.coderslab.magazyn.entity.Driver;
-import pl.coderslab.magazyn.entity.Order;
-import pl.coderslab.magazyn.entity.OrderStatus;
+import pl.coderslab.magazyn.dto.FilterOrderDTO;
+import pl.coderslab.magazyn.entity.*;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.repository.OrderRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -71,6 +70,45 @@ public class OrderService {
         }
 
         orderRepository.save(order);
+    }
+
+    public List<Order> orderFilter(FilterOrderDTO filter) {
+        List<Order> filterList;
+
+        // Filter by trackingNumber
+        if (filter.getFilterText() == null || filter.getFilterText().matches(".*[a-zA-Z]+.*")) {
+            filterList = orderRepository.findAll();
+        } else {
+            filterList = orderRepository.findByTrackingNumberContaining(filter.getFilterText());
+        }
+
+        // Filter by date
+        if (filter.getFilterData() != null) {
+            filterList = filterList.stream()
+                    .filter(order -> order.getCreationDate().equals(filter.getFilterData()))
+                    .collect(Collectors.toList());
+        }
+
+        // Filter by status
+        if (!"WSZYSTKIE".equals(filter.getStatus())) {
+            OrderStatus status = OrderStatus.valueOf(filter.getStatus());
+            filterList = filterList.stream()
+                    .filter(order -> order.getStatus().equals(status))
+                    .collect(Collectors.toList());
+        }
+
+        // Filter by kind
+        if (filter.getKindEur() == ShipmentDimensions.EUR && filter.getKindHp() != ShipmentDimensions.HP) {
+            filterList = filterList.stream()
+                    .filter(order -> order.getDimensions() == ShipmentDimensions.EUR)
+                    .collect(Collectors.toList());
+        } else if (filter.getKindEur() != ShipmentDimensions.EUR && filter.getKindHp() == ShipmentDimensions.HP) {
+            filterList = filterList.stream()
+                    .filter(order -> order.getDimensions() == ShipmentDimensions.HP)
+                    .collect(Collectors.toList());
+        }
+
+        return filterList;
     }
 
 }
