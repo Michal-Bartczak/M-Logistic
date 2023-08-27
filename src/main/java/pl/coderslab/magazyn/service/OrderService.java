@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.dto.FilterOrderDTO;
 import pl.coderslab.magazyn.dto.OrderReportDTO;
+import pl.coderslab.magazyn.dto.OrderStatusDTO;
 import pl.coderslab.magazyn.entity.*;
 import pl.coderslab.magazyn.repository.CustomOrderRepository;
 import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.repository.OrderRepository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,12 +24,11 @@ public class OrderService {
     private final CustomerService customerService;
     private final CustomerRepository customerRepository;
     private final DriverService driverService;
-    
+
     private final String DELIVERED = "DOSTARCZONO";
     private final String NOT_DELIVERED = "NIE DOSTARCZONO";
     private final String LACK = "BRAK";
     private final String ALL = "WSZYSTKIE";
-
 
 
     @Autowired
@@ -145,6 +146,16 @@ public class OrderService {
 
 
         return new OrderReportDTO(totalOrders, warehouseOrders, inDeliveryOrders, deliveredOrders, countUsers, countDrivers);
+    }
+
+    public OrderStatusDTO getOrderStatusByTrackingNumber(String trackingNumber) {
+        Order order = getOrderByTrackingNumber(trackingNumber);
+
+        if (order == null) {
+            return new OrderStatusDTO(null, "Nie można znaleźć paczki o numerze: " + trackingNumber);
+        }
+
+        return new OrderStatusDTO(order.getStatus(), null);
     }
 
 }

@@ -30,6 +30,11 @@ public class HomeController {
         return "homepages/homePage";
     }
 
+    @GetMapping("/contact")
+    public String getContact(){
+        return "/homepages/contact";
+    }
+
     @GetMapping("/159406")
     public String add(Model model){
         model.addAttribute("form", new Employee());
