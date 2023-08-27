@@ -1,12 +1,10 @@
 package pl.coderslab.magazyn.controller.rest;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.magazyn.dto.FilterOrderDTO;
 import pl.coderslab.magazyn.dto.OrderFilterResponse;
+import pl.coderslab.magazyn.dto.OrderReportDTO;
 import pl.coderslab.magazyn.entity.Order;
 import pl.coderslab.magazyn.service.DriverService;
 import pl.coderslab.magazyn.service.OrderService;
@@ -16,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class SwitchOrderDriverRestController {
+public class EmployeeRestController {
     private final OrderService orderService;
     private final DriverService driverService;
 
-    public SwitchOrderDriverRestController(OrderService orderService, DriverService driverService) {
+    public EmployeeRestController(OrderService orderService, DriverService driverService) {
         this.orderService = orderService;
         this.driverService = driverService;
     }
@@ -54,5 +52,9 @@ public class SwitchOrderDriverRestController {
             response.setDrivers(driverService.getAllDrivers());
 
         return ResponseEntity.ok(response);
+    }
+    @GetMapping("employee/orderStatsForCurrentMonth")
+    public OrderReportDTO getOrderStatsForCurrentMonth() {
+       return orderService.getOrderReportForCurrentMonth();
     }
 }

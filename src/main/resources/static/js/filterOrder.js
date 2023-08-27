@@ -110,6 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     </div>
                 `).join('');
+                    document.querySelectorAll('.driverSelect').forEach(selectElement => {
+                        selectElement.addEventListener('change', function() {
+                            let orderId = this.getAttribute('data-order-id');
+                            let driverId = this.value;
+
+                            updateOrderDriver(orderId, driverId);
+                        });
+                    });
+
                 }
             });
     }

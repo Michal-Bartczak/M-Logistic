@@ -38,5 +38,10 @@ public class DriverController {
         return "redirect:/driver/edit-password?update=false";
     }
 
+    @GetMapping("/raport")
+    public String getRaport(Model model){
+        model.addAttribute("driver", driverService.getCurrentDriverObject());
+        return "/driver/raportDriver";
+    }
 
 }

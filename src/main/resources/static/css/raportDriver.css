@@ -1,0 +1,166 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #1b203d;
+    overflow: hidden;
+    font-family: system-ui;
+}
+.clearfix {
+    clear: both;
+}
+.logo{
+    margin: 0px;
+    margin-left: 28px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+.logo span {
+    color: #f7403b;
+}
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #272c4a;
+    overflow: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+
+}
+
+.sidenav a {
+    padding: 15px 8px 15px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    transition: 0.3s;
+}
+.sidenav a:hover{
+    color: #f1f1f1;
+    background-color: #1b203d;
+}
+.icon-a {
+    width: 100%;
+    display: block;
+}
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+    margin-left: 300px;
+    height: 700px;
+    color: white;
+}
+.head {
+    padding: 20px;
+
+}
+.col-div-6{
+    width: 50%;
+    float: left;
+}
+.profile {
+    display: inline-block;
+    float: right;
+    width: 160px;
+}
+.pro-img{
+    float: left;
+    width: 40px;
+    margin-top: 5px;
+    border-radius: 20%;
+}
+.profile p{
+    color: white;
+    font-weight: 500;
+    margin-left: 55px;
+    margin-top: 10px;
+    font-size: 13.5px;
+}
+.profile p span{
+    font-weight: 400;
+    font-size: 12px;
+    display: block;
+    color: #8e8e8e;
+}
+.nav{
+    display: none;
+}
+.col-div-3{
+
+    width: calc(100% - 60px); /* odejmujemy marginesy z obu stron */
+    float: left;
+    margin: 0 30px; /* marginesy po bokach */
+    background-color: #272c4a;/* dowolny kolor, który chcesz ustawić */
+    padding-left: 20px;
+    color: white;
+
+
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #272c4a;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.col-md-4 {
+    padding: 1em;
+    box-sizing: border-box;
+}
+.fixed-height {
+    height: 270px;
+    overflow-y: auto;
+    background-color: #272c4a;
+    color: white;
+}
+h5{
+    color: white
+}
+
+input {
+    width: 30%;
+}
+#driverButton, #customerButton {
+    width: 48%; /* 50% - margines */
+    margin: 1%;
+    font-size: 1em;
+}
+.error{
+    color: red;
+}
+
+#myChart {
+    height: 500px; /* Określona wysokość canvasu, która będzie wpływać na rozmiar wykresu. Można dostosować według potrzeb. */
+    display: block; /* Wyśrodkowanie w poziomie */
+    margin: 0 auto; /* Wyśrodkowanie w poziomie */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

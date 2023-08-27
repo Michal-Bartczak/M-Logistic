@@ -66,5 +66,9 @@ public class EmployeeController {
         model.addAttribute("drivers", employeeService.findAllDrivers());
         return "/employees/employeesAndDrivers";
     }
-
+    @GetMapping("/raport")
+    public String showRaport(Model model){
+        model.addAttribute("employee", employeeService.getCurrentEmployeeObject());
+        return "/employees/orderRaport";
+    }
 }

@@ -3,8 +3,10 @@ package pl.coderslab.magazyn.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.dto.FilterOrderDTO;
+import pl.coderslab.magazyn.dto.OrderReportDTO;
 import pl.coderslab.magazyn.entity.*;
 import pl.coderslab.magazyn.repository.CustomOrderRepository;
+import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.repository.OrderRepository;
 
@@ -18,15 +20,24 @@ public class OrderService {
     private final DriverRepository driverRepository;
     private final CustomOrderRepository customOrderRepository;
     private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
+    private final DriverService driverService;
+    
+    private final String DELIVERED = "DOSTARCZONO";
+    private final String NOT_DELIVERED = "NIE DOSTARCZONO";
+    private final String LACK = "BRAK";
+    private final String ALL = "WSZYSTKIE";
+
 
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, DriverRepository driverRepository, CustomOrderRepository customOrderRepository, CustomerService customerService) {
+    public OrderService(OrderRepository orderRepository, DriverRepository driverRepository, CustomOrderRepository customOrderRepository, CustomerService customerService, CustomerRepository customerRepository, DriverService driverService) {
         this.orderRepository = orderRepository;
         this.driverRepository = driverRepository;
-
         this.customOrderRepository = customOrderRepository;
         this.customerService = customerService;
+        this.customerRepository = customerRepository;
+        this.driverService = driverService;
     }
 
 
@@ -60,12 +71,19 @@ public class OrderService {
     public void updateStatusOrderAfterDelivery(Long orderId, String updateStatus) {
         Optional<Order> optionalOrder = orderRepository.findById(orderId);
         Order order = optionalOrder.orElseThrow(() -> new RuntimeException("Order not found for ID: " + orderId));
-
-        if (updateStatus.equals("DOSTARCZONO")) {
+        DeliveryLog deliveryLog = new DeliveryLog();
+        Driver driver = driverService.getCurrentDriverObject();
+        if (updateStatus.equals(DELIVERED)) {
             order.setStatus(OrderStatus.DOSTARCZONO);
-        } else if (updateStatus.equals("NIE DOSTARCZONO")) {
+            deliveryLog.setDeliveryStatus(DeliveryStatus.DOSTARCZONO);
+            deliveryLog.setDriver(driver);
+            driver.addLog(deliveryLog);
+        } else if (updateStatus.equals(NOT_DELIVERED)) {
             order.setStatus(OrderStatus.MAGAZYN);
-            order.setProvider("BRAK");
+            order.setProvider(LACK);
+            deliveryLog.setDeliveryStatus(DeliveryStatus.NIE_DOSTARCZONO);
+            deliveryLog.setDriver(driver);
+            driver.addLog(deliveryLog);
         } else {
             throw new IllegalArgumentException("Unknown updateStatus value: " + updateStatus);
         }
@@ -73,6 +91,7 @@ public class OrderService {
         orderRepository.save(order);
     }
 
+    // filtrowanie na całej liście
     public List<Order> orderFilter(FilterOrderDTO filter) {
         List<Order> filterList;
 
@@ -91,7 +110,7 @@ public class OrderService {
         }
 
         // Filter by status
-        if (!"WSZYSTKIE".equals(filter.getStatus())) {
+        if (!ALL.equals(filter.getStatus())) {
             OrderStatus status = OrderStatus.valueOf(filter.getStatus());
             filterList = filterList.stream()
                     .filter(order -> order.getStatus().equals(status))
@@ -111,8 +130,21 @@ public class OrderService {
 
         return filterList;
     }
+
     public List<Order> filterOrders(FilterOrderDTO filter) {
         return customOrderRepository.orderFilter(filter);
+    }
+
+    public OrderReportDTO getOrderReportForCurrentMonth() {
+        Long totalOrders = customOrderRepository.countOrdersByStatusForCurrentMonth(null);
+        Long warehouseOrders = customOrderRepository.countOrdersByStatusForCurrentMonth(OrderStatus.MAGAZYN);
+        Long inDeliveryOrders = customOrderRepository.countOrdersByStatusForCurrentMonth(OrderStatus.DOSTAWA);
+        Long deliveredOrders = customOrderRepository.countOrdersByStatusForCurrentMonth(OrderStatus.DOSTARCZONO);
+        Long countUsers = customerRepository.count();
+        Long countDrivers = driverRepository.count();
+
+
+        return new OrderReportDTO(totalOrders, warehouseOrders, inDeliveryOrders, deliveredOrders, countUsers, countDrivers);
     }
 
 }
