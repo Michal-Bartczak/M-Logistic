@@ -1,5 +1,6 @@
 package pl.coderslab.magazyn.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import pl.coderslab.magazyn.generators.TrackingNumberGenerator;
@@ -22,26 +23,26 @@ public class Order {
     private Long id;
     @Enumerated(EnumType.STRING)
     private ShipmentDimensions dimensions;
-    @NotNull
+    @NotNull(message = "{order.weigh.notnull}")
     private String weigh;
-    @Min(100)
+    @Min(value = 100, message = "{order.price.min}")
     private BigDecimal price;
     private LocalDate creationDate =LocalDate.now();
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.MAGAZYN;
-    @NotNull
+
     private String provider = "BRAK";
-    @NotNull
+    @NotNull(message = "{order.zipCodeRecipient.notnull}")
     private String zipCodeRecipient;
-    @NotNull
+    @NotNull(message = "{order.cityRecipient.notnull}")
     private String cityRecipient;
-    @NotNull
+    @NotNull(message = "{order.streetRecipient.notnull}")
     private String streetRecipient;
-    @NotNull
+    @NotNull(message = "{order.nameRecipient.notnull}")
     private String nameRecipient;
 
     private String trackingNumber = TrackingNumberGenerator.generateTrackingNumber();
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne
     private Customer customer;
 

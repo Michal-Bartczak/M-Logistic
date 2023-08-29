@@ -28,13 +28,13 @@ public class BaseUser {
     private Long id;
 
     @Column(unique = true)
-    @Size(min = 5, max = 15, message = "Nazwa użytkownika musi mieć od 5 do 15 znaków")
+    @Size(min = 5, max = 15, message = "{baseuser.username.size}")
     private String username;
-    @NotNull
+    @NotNull(message = "{baseuser.email.notnull}")
     @Column(unique = true)
     private String email;
 
-    @Size(min = 5, message = "Hasło musi mieć co najmniej 5 znaków")
+    @Size(min = 5, message = "{baseuser.password.size}")
     private String password;
 
 

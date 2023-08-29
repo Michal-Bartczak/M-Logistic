@@ -1,5 +1,6 @@
 package pl.coderslab.magazyn.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.Getter;
@@ -17,11 +18,12 @@ import java.util.List;
 @Data
 @Table(name = "drivers")
 public class Driver extends BaseUser{
-   @Size(min=3, message = "Imię musi składać się z conajmniej 3 liter")
+   @Size(min=3, message = "{driver.name.size}")
    private String name;
-   @Size(min=3, max = 15, message = "Nazwisko musi mieć od 3 do 15 znaków")
+   @Size(min=3, max = 15, message = "{driver.surname.size}")
    private String surname;
    private String role = "DRIVER";
+   @JsonManagedReference
    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
    private List<DeliveryLog> logs;
    public void addLog(DeliveryLog log) {

@@ -1,5 +1,6 @@
 package pl.coderslab.magazyn.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class DeliveryLog {
 
     @Enumerated(EnumType.ORDINAL)
     public DeliveryStatus deliveryStatus;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "driver_id")
     private Driver driver;

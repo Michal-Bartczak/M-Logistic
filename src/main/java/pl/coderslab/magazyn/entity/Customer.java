@@ -1,5 +1,6 @@
 package pl.coderslab.magazyn.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.lang.Nullable;
 
@@ -18,6 +19,7 @@ public class Customer extends BaseUser {
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private CustomerDetails customerDetails;
+    @JsonManagedReference
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
 

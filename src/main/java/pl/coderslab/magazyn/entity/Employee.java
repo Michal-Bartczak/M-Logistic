@@ -15,9 +15,9 @@ import javax.validation.constraints.Size;
 @Data
 @Table(name = "employees")
 public class Employee extends BaseUser{
-    @Size(min=3, message = "Imię musi składać się z conajmniej 3 liter")
+    @Size(min=3, message = "{employee.name.size}")
     private String name;
-    @Size(min=3, max = 15, message = "Nazwisko musi mieć od 3 do 15 znaków")
+    @Size(min=3, max = 15, message = "{employee.surname.size}")
     private String surname;
     private String role = "EMPLOYEE";
 
