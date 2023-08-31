@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -10,10 +10,24 @@
     <title><spring:message code="page.title"/></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap">
     <link rel="stylesheet" href="css/styleStronaGlowna.css" type="text/css"/>
 </head>
 <body>
+<div id="languageSelector" class="language-box">
+    <div class="language-content">
+        <p>Wybierz język:</p>
+        <div class="language-links">
+            <a href="?lang=pl" onclick="setLanguageCookieAndClose(event, 'pl')">Polski</a> | <a href="?lang=en"
+                                                                                                onclick="setLanguageCookieAndClose(event, 'en')">English</a>
+
+
+        </div>
+    </div>
+    <span class="close-btn" onclick="closeLanguageBox()">X</span>
+</div>
+
+
 <div id="mySidenav" class="sidenav">
     <p class="logo"><span>M</span><spring:message code="menu.logo"/></p>
     <a href="/" class="icon-a"><spring:message code="menu.home"/></a>
@@ -26,7 +40,8 @@
 </div>
 <div id="main">
     <div class="container text-center mt-5" style="width: 100%;">
-        <h1 class="display-4 text-white" style="font-family: system-ui; font-weight: 500;"><spring:message code="main.welcome.heading"/></h1>
+        <h1 class="display-4 text-white" style="font-family: system-ui; font-weight: 500;"><spring:message
+                code="main.welcome.heading"/></h1>
         <p class="lead text-white"><spring:message code="main.welcome.subheading"/></p>
 
         <div class="container">
@@ -85,7 +100,15 @@
             </div>
         </div>
     </div>
+</div>
+<footer>
+    <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+</footer>
 
-    <jsp:include page="../includes/footer.jsp"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/js/swapProvider.js"></script>
+<script src="/js/chooseLanguage.js"></script>
+
 </body>
 </html>
