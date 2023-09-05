@@ -6,6 +6,7 @@ import pl.coderslab.magazyn.dto.FilterOrderDTO;
 import pl.coderslab.magazyn.dto.OrderReportDTO;
 import pl.coderslab.magazyn.dto.OrderStatusDTO;
 import pl.coderslab.magazyn.entity.*;
+import pl.coderslab.magazyn.exception.OrderNotFoundException;
 import pl.coderslab.magazyn.repository.CustomOrderRepository;
 import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
@@ -52,11 +53,11 @@ public class OrderService {
     }
 
 
-    public Order updateOrderProvider(Long orderId, Long driverId) {
+    public Order updateOrderProvider(Long orderId, Long driverId)  {
         Optional<Order> orderOptional = orderRepository.findById(orderId);
         Optional<Driver> driverOptional = driverRepository.findById(driverId);
         if (orderOptional.isEmpty() || driverOptional.isEmpty()) {
-            throw new RuntimeException("Order or Driver not found");
+            throw new OrderNotFoundException("Zamówienie lub kierowca nie istnieją");
         }
         Order order = orderOptional.get();
         Driver driver = driverOptional.get();

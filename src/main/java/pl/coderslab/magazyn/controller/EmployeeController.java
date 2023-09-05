@@ -38,12 +38,12 @@ public class EmployeeController {
         model.addAttribute("orderList", orderService.getAllOrdersSortedByStatusAndProvider());
         model.addAttribute("employee", employeeService.getCurrentEmployeeObject());
         model.addAttribute("driversList", driverService.getAllDrivers());
-        return "/employees/homepageEmployee";
+        return "/employee/homepageEmployee";
     }
     @GetMapping ("/edit-password")
     public String editPassword(Model model){
         model.addAttribute("employee", employeeService.getCurrentEmployeeObject());
-        return "/employees/editPassword";
+        return "/employee/editPassword";
     }
     @PostMapping("/edit-password")
     public String savePassword(@RequestParam String oldPassword,
@@ -57,18 +57,18 @@ public class EmployeeController {
     public String showAllCustomers(Model model){
         model.addAttribute("employee", employeeService.getCurrentEmployeeObject());
         model.addAttribute("customers", customerService.getAllCustomers());
-        return "/employees/customersList";
+        return "/employee/customersList";
     }
     @GetMapping("/employees-list")
     public String showAllEmployee(Model model){
         model.addAttribute("employeeOwn", employeeService.getCurrentEmployeeObject());
         model.addAttribute("employees", employeeService.findAllEmployees());
         model.addAttribute("drivers", employeeService.findAllDrivers());
-        return "/employees/employeesAndDrivers";
+        return "/employee/employeesAndDrivers";
     }
     @GetMapping("/raport")
     public String showRaport(Model model){
         model.addAttribute("employee", employeeService.getCurrentEmployeeObject());
-        return "/employees/orderRaport";
+        return "/employee/orderRaport";
     }
 }

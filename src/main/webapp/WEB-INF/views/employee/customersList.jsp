@@ -5,64 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <titl>Pracownik</titl>
+    <title>Lista Klientów</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css"/>
-    <link rel="stylesheet" href="/css/styleZalogowanyAdmin.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/logInAdmin.css" type="text/css"/>
 
 </head>
-<style>
-    .col-div-3{
-        margin-bottom: 10px;
-    }
-    h1{
-        color: white;
-        text-decoration: none;
-    }
-    .list{
-        font-size: 14px;
-        color: #6c757d;
-    }
-    .header-list{
-        padding-top: 10px;
 
-    }
-    button.btn.btn-link {
-        text-decoration: none;
-    }
-    .list-header{
-        font-size: large;
-        color: white;
-    }
-    .col-div-3 .btn {
-        width: 100%;
-        display: block;
-    }
-    .row {
-        margin: 0;
-        padding: 0;
-    }
-    .link-details{
-        color: white;
-        text-decoration: none;
-    }
-    .link-details:hover {
-        color: green;  /* Możesz również użyć konkretnego kodu koloru, np. #00FF00 dla zielonego */
-    }
-
-
-    .custom-div a {
-        color: inherit; /* zachowuje kolor tekstu z nadrzędnego diva */
-        text-decoration: none; /* usuwa podkreślenie */
-        display: block; /* sprawia, że link zajmuje całą przestrzeń diva */
-        height: 100%;
-        width: 100%;
-    }
-
-
-
-</style>
 <body>
 
 <jsp:include page="../sidebars/sidebarEmployee.jsp"/>

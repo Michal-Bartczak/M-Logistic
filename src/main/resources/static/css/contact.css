@@ -53,6 +53,7 @@ body {
     padding: 16px;
     margin-left: 300px;
     height: 700px;
+    margin-top: 5px;
     color: white;
 }
 .head {
@@ -75,11 +76,11 @@ body {
     border-radius: 20%;
 }
 .profile p{
-    color: white;
-    font-weight: 500;
-    margin-left: 55px;
-    margin-top: 10px;
-    font-size: 13.5px;
+   color: white;
+   font-weight: 500;
+   margin-left: 55px;
+   margin-top: 10px;
+   font-size: 13.5px; 
 }
 .profile p span{
     font-weight: 400;
@@ -92,13 +93,13 @@ body {
 }
 .col-div-3{
 
-    width: calc(100% - 60px); /* odejmujemy marginesy z obu stron */
-    float: left;
-    margin: 0 30px; /* marginesy po bokach */
-    background-color: #272c4a;/* dowolny kolor, który chcesz ustawić */
-    padding-left: 20px;
-    color: white;
-
+        width: calc(100% - 60px); /* odejmujemy marginesy z obu stron */
+        float: left;
+        margin: 0 30px; /* marginesy po bokach */
+        background-color: #272c4a;/* dowolny kolor, który chcesz ustawić */
+        padding-left: 20px;
+        color: white;
+    
 
 }
 footer {
@@ -115,8 +116,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-}
-.col-md-4 {
+  }
+  .col-md-4 {
     padding: 1em;
     box-sizing: border-box;
 }
@@ -129,46 +130,9 @@ footer {
 h5{
     color: white
 }
-input {
-    width: 30%;
-}
-h4{
-    margin-bottom: 50px;
-}
-.status-package{
- margin-top: 50px;
- }
-.status-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.status {
-    font-size: 18px;
-    margin-bottom: 20px;
-    position: relative;
-}
 
 
 
-.status:before {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: -20px;
-    width: 10px;
-    height: 100%;
-    background-color: #f7403b; /* Kolor tła dla linii */
-    z-index: -1;
-}
-
-.status:last-child:before {
-    height: 10px; /* Kończy linię na ostatnim punkcie */
-}
-
-.status i {
-    margin-right: 10px;
-}
 
 
 

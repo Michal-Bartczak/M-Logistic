@@ -2,7 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #1b203d;
-    overflow: hidden;
+
     font-family: system-ui;
 }
 .clearfix {
@@ -129,52 +129,13 @@ footer {
 h5{
     color: white
 }
-
-
-.language-box {
-    position: fixed;
-    top: 0;
-    left: 75%;
-    right: 0;
-    background-color: #272c4a;
-    padding: 10px 20px;
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    color: white;
-    text-decoration: none;
-    flex-direction: row;
-}
-.close-btn {
-    background-color: black; /* Zmiana tła na czarne */
-    border: none;
-    padding: 5px 8px;
-    cursor: pointer;
-    color: white; /* Ustawienie koloru tekstu/ikony na biały */
+input {
+    width: 30%;
 }
 
-.close-btn:hover {
-    background-color: #555; /* Ciemniejsze tło podczas najechania */
-}
 
-.language-box a {
-    text-decoration: none; /* Usuwa podkreślenie z linków */
-    color: white; /* Kolor linków - możesz dostosować do swoich potrzeb */
-    padding-left: 50px;
-    padding-right: 50px;
-}
-.language-content {
-    flex: 1; /* pozwala na rozciągnięcie zawartości w poziomie */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* centruje zawartość w poziomie */
-    justify-content: center; /* centruje zawartość w pionie */
-}
-.language-links {
-    margin-top: 5px; /* dodaje odstęp między tekstem a linkami */
-}
+
+
 
 
 

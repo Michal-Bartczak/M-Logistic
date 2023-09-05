@@ -22,7 +22,7 @@ public class DriverController {
     public String showHomepage(Model model){
         model.addAttribute("driver", driverService.getCurrentDriverObject());
         model.addAttribute("orderlist", driverService.getAllOrdersForCurrentDriver());
-        return "/driver/logInDriver";
+        return "/driver/homepageDriver";
     }
     @GetMapping("/edit-password")
     public String editPasswordDriver(Model model){

@@ -1,0 +1,40 @@
+body {
+    margin: 0px;
+    padding-left: 50px;
+    padding-top: 50px;
+    background-color: #1b203d;
+
+    font-family: system-ui;
+}
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #272c4a;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+}
+
+
+.error{
+    color: red;
+}
+
+.content-error{
+    font-size: 20px;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,14 @@
 package pl.coderslab.magazyn.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.magazyn.entity.Admin;
 import pl.coderslab.magazyn.entity.Employee;
+import pl.coderslab.magazyn.exception.OrderNotFoundException;
 import pl.coderslab.magazyn.generic.UserPasswordEncryptor;
 import pl.coderslab.magazyn.repository.AdminRepository;
 import pl.coderslab.magazyn.repository.EmployeeRepository;
@@ -26,7 +29,7 @@ public class HomeController {
 
 
     @GetMapping("/")
-    public String hello(){
+    public String getHomePage(){
         return "homepages/homePage";
     }
 
@@ -55,5 +58,13 @@ public class HomeController {
         userPasswordEncryptor.encryptPasswordInBaseUser(admin);
      adminRepository.save(admin);
         return "redirect:/159406111";
+    }
+    @GetMapping("/someEndpoint")
+    public OrderNotFoundException myControllerMethod() {
+        return new OrderNotFoundException("Nie można znaleźć");
+    }
+    @GetMapping("/throwException")
+    public String throwException() {
+        throw new OrderNotFoundException("Testowy wyjątek OrderNotFoundException");
     }
 }

@@ -2,7 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #1b203d;
-    overflow: hidden;
+
     font-family: system-ui;
 }
 .clearfix {
@@ -53,7 +53,6 @@ body {
     padding: 16px;
     margin-left: 300px;
     height: 700px;
-    margin-top: 5px;
     color: white;
 }
 .head {
@@ -131,6 +130,17 @@ h5{
     color: white
 }
 
+input {
+    width: 30%;
+}
+#driverButton, #customerButton {
+    width: 48%; /* 50% - margines */
+    margin: 1%;
+    font-size: 1em;
+}
+.error{
+    color: red;
+}
 
 
 

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M-Logistic</title>
+    <title>Rejestracja</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" >
@@ -15,7 +15,7 @@
     <style>
         /* Dowolne dodatkowe style */
     </style>
-    <link rel="stylesheet" href="/css/rejestracja.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/register.css" type="text/css"/>
 
 </head>
 <body>
@@ -107,5 +107,3 @@
 </script>
 
 <jsp:include page="../includes/footer.jsp"/>
-</body>
-</html>

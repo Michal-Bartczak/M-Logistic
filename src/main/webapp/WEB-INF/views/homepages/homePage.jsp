@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap">
-    <link rel="stylesheet" href="css/styleStronaGlowna.css" type="text/css"/>
+    <link rel="stylesheet" href="css/homepage.css" type="text/css"/>
 </head>
 <body>
 <div id="languageSelector" class="language-box">
@@ -107,7 +107,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="/js/swapProvider.js"></script>
 <script src="/js/chooseLanguage.js"></script>
 
 </body>
