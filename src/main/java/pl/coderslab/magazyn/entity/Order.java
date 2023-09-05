@@ -1,13 +1,17 @@
 package pl.coderslab.magazyn.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.coderslab.magazyn.generators.TrackingNumberGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -23,22 +27,22 @@ public class Order {
     private Long id;
     @Enumerated(EnumType.STRING)
     private ShipmentDimensions dimensions;
-    @NotNull(message = "{order.weigh.notnull}")
+    @Min(value = 10, message = "{order.weigh.notnull}")
     private String weigh;
-    @Min(value = 100, message = "{order.price.min}")
+    @NotNull(  message = "{order.price.min}")
     private BigDecimal price;
-    private LocalDate creationDate =LocalDate.now();
+    private LocalDate creationDate = LocalDate.now();
     @Enumerated(EnumType.STRING)
     private OrderStatus status = OrderStatus.MAGAZYN;
 
     private String provider = "BRAK";
-    @NotNull(message = "{order.zipCodeRecipient.notnull}")
+    @Pattern(regexp = "^\\d{2}-\\d{3}$", message ="{order.zipCodeRecipient.notnull}")
     private String zipCodeRecipient;
-    @NotNull(message = "{order.cityRecipient.notnull}")
+   @Size(min =3, message = "{order.cityRecipient.notnull}")
     private String cityRecipient;
-    @NotNull(message = "{order.streetRecipient.notnull}")
+    @Size(min =3,message = "{order.streetRecipient.notnull}")
     private String streetRecipient;
-    @NotNull(message = "{order.nameRecipient.notnull}")
+    @Size(min =3,message = "{order.nameRecipient.notnull}")
     private String nameRecipient;
 
     private String trackingNumber = TrackingNumberGenerator.generateTrackingNumber();

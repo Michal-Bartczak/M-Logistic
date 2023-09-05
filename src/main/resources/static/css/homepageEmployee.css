@@ -4,6 +4,7 @@ body {
     background-color: #1b203d;
     /*overflow: hidden;*/
     font-family: system-ui;
+    color: white;
 }
 
 .clearfix {
@@ -418,9 +419,13 @@ input[type="checkbox"]{
     color: white;
 }
 input[type="checkbox"] {
-    /* Dodaj dodatkowy odstęp, aby lepiej oddzielić checkboxy od innych pól */
+
     margin-right: 5px;
 }
 .dimension-filter{
     margin-right: 10px;
+}
+#noOrdersMessage {
+    margin-left: 50px;
+
 }

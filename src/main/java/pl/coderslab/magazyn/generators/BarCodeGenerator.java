@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public class BarCodeGenerator {
     public byte[] generateBarcode(String code) throws Exception {
-        if (code == null || code.length() != 9) {
+        if (code == null || code.length() != 10) {
             throw new IllegalArgumentException("Code must be a 10-digit string");
         }
 

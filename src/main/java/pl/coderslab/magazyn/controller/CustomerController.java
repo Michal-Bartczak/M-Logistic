@@ -47,10 +47,12 @@ public class CustomerController {
     }
 
     @PostMapping("/editDetails")
-    public String saveCustomerDetails(@Valid CustomerDetails customerDetails,
-                                      BindingResult bindingResult) {
+    public String saveCustomerDetails(@Valid @ModelAttribute("editForm") CustomerDetails customerDetails,
+                                      BindingResult bindingResult,
+                                      Model model) {
         if (bindingResult.hasErrors()) {
-            return "/customer/editDetails";
+            model.addAttribute("editForm", customerDetails);
+            return "customer/editDetails";
         }
 
         Customer customer = customerService.getCurrentCustomerObject();
@@ -87,9 +89,13 @@ public class CustomerController {
 
     @PostMapping("/send")
     public String saveSendPackage(@Valid @ModelAttribute("detailsPackage") Order order,
-                                  BindingResult bindingResult) {
+                                  BindingResult bindingResult,
+                                  Model model) {
         if (bindingResult.hasErrors()) {
-            return "redirect:customer/sendPackage?sent=false";
+            model.addAttribute("detailsPackage", order);
+            model.addAttribute("dimensions", ShipmentDimensions.values());
+            model.addAttribute("customer", customerService.getCurrentCustomerObject());
+            return "/customer/sendPackage";
         }
         customerService.addSendPackageCustomer(order);
         return "redirect:/customer/send?sent=true";

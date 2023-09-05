@@ -11,7 +11,7 @@ import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
 import pl.coderslab.magazyn.repository.OrderRepository;
 
-import java.util.Arrays;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,8 +31,9 @@ public class OrderService {
     private final String ALL = "WSZYSTKIE";
 
 
-    @Autowired
-    public OrderService(OrderRepository orderRepository, DriverRepository driverRepository, CustomOrderRepository customOrderRepository, CustomerService customerService, CustomerRepository customerRepository, DriverService driverService) {
+
+    public OrderService(OrderRepository orderRepository, DriverRepository driverRepository, CustomOrderRepository customOrderRepository,
+                        CustomerService customerService, CustomerRepository customerRepository, DriverService driverService) {
         this.orderRepository = orderRepository;
         this.driverRepository = driverRepository;
         this.customOrderRepository = customOrderRepository;
@@ -50,6 +51,7 @@ public class OrderService {
         return orderRepository.findAllSortedByStatusAndProvider();
     }
 
+
     public Order updateOrderProvider(Long orderId, Long driverId) {
         Optional<Order> orderOptional = orderRepository.findById(orderId);
         Optional<Driver> driverOptional = driverRepository.findById(driverId);
@@ -60,7 +62,8 @@ public class OrderService {
         Driver driver = driverOptional.get();
         order.setStatus(OrderStatus.DOSTAWA);
         order.setProvider(driver.getUsername());
-        return orderRepository.save(order);
+        orderRepository.save(order);
+        return order;
     }
 
     public List<Order> getAllOrdersByCustomerIdSortedByDate() {

@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Data
+
 @Table(name = "drivers")
 public class Driver extends BaseUser{
    @Size(min=3, message = "{driver.name.size}")
@@ -23,7 +23,7 @@ public class Driver extends BaseUser{
    @Size(min=3, max = 15, message = "{driver.surname.size}")
    private String surname;
    private String role = "DRIVER";
-   @JsonManagedReference
+//   @JsonManagedReference
    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, orphanRemoval = true)
    private List<DeliveryLog> logs;
    public void addLog(DeliveryLog log) {

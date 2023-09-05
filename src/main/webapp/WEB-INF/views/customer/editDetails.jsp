@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/rejestracja.css" type="text/css"/>
 
 </head>
+
 <body>
 <jsp:include page="../sidebars/sidebarCustomer.jsp"/>
 
@@ -79,6 +80,14 @@
 
     </div>
 
-<jsp:include page="../includes/footer.jsp"/>
+</div>
+    <footer>
+        <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/js/validateEditCustomerDetails.js"></script>
+
 </body>
 </html>
