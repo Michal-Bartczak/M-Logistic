@@ -2,6 +2,7 @@ package pl.coderslab.magazyn.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.coderslab.magazyn.exception.BarcodeGenerationException;
 import pl.coderslab.magazyn.generators.BarCodeGenerator;
 import pl.coderslab.magazyn.dto.ShippingLabelDTO;
 import pl.coderslab.magazyn.entity.Customer;
@@ -27,62 +28,44 @@ public class DtoService {
     public ShippingLabelDTO getShippingLabelByTrackingNumberForCustomer(String trackingNumber) {
         Order order = orderService.getOrderByTrackingNumber(trackingNumber);
         CustomerDetails customerDetails = customerService.getCurrentCustomerDetails();
-
-        ShippingLabelDTO label = new ShippingLabelDTO();
-        label.setTrackingNumber(trackingNumber);
-
-        label.setCityRecipient(order.getCityRecipient());
-        label.setWeigh(order.getWeigh());
-        label.setNameRecipient(order.getNameRecipient());
-        try {
-            byte[] barcodeImage = barCodeGenerator.generateBarcode(trackingNumber);
-            label.setBarcode(encodeImageToBase64(barcodeImage));
-        } catch (Exception e) {
-            // Tutaj możesz zalogować błąd lub obsłużyć go inaczej, jeśli generowanie kodu kreskowego się nie powiedzie
-            e.printStackTrace();
-        }
-        label.setZipCodeRecipient(order.getZipCodeRecipient());
-        label.setOrderCreated(order.getCreationDate());
-        label.setStreetRecipient(order.getStreetRecipient());
-        label.setDimensions(order.getDimensions().toString());
-        label.setNameCompanySender(customerDetails.getNameCompanySender());
-        label.setZipCodeSender(customerDetails.getZipCodeSender());
-        label.setCitySender(customerDetails.getCitySender());
-        label.setStreetSender(customerDetails.getStreetSender());
-
-        return label;
+        return createShippingLabel(order, customerDetails);
     }
-    public ShippingLabelDTO getShippingLabelByTrackingNumberForEmployee(String trackingNumber){
+
+    public ShippingLabelDTO getShippingLabelByTrackingNumberForEmployee(String trackingNumber) {
         Order order = orderService.getOrderByTrackingNumber(trackingNumber);
-       Customer customer = order.getCustomer();
-      CustomerDetails customerDetails = customer.getCustomerDetails();
-        ShippingLabelDTO label = new ShippingLabelDTO();
-        label.setTrackingNumber(trackingNumber);
-
-        label.setCityRecipient(order.getCityRecipient());
-        label.setWeigh(order.getWeigh());
-        label.setNameRecipient(order.getNameRecipient());
-        try {
-            byte[] barcodeImage = barCodeGenerator.generateBarcode(trackingNumber);
-            label.setBarcode(encodeImageToBase64(barcodeImage));
-        } catch (Exception e) {
-            // Tutaj możesz zalogować błąd lub obsłużyć go inaczej, jeśli generowanie kodu kreskowego się nie powiedzie
-            e.printStackTrace();
-        }
-        label.setZipCodeRecipient(order.getZipCodeRecipient());
-        label.setOrderCreated(order.getCreationDate());
-        label.setStreetRecipient(order.getStreetRecipient());
-        label.setDimensions(order.getDimensions().toString());
-        label.setNameCompanySender(customerDetails.getNameCompanySender());
-        label.setZipCodeSender(customerDetails.getZipCodeSender());
-        label.setCitySender(customerDetails.getCitySender());
-        label.setStreetSender(customerDetails.getStreetSender());
-
-        return label;
-
+        Customer customer = order.getCustomer();
+        CustomerDetails customerDetails = customer.getCustomerDetails();
+        return createShippingLabel(order, customerDetails);
     }
+
     private String encodeImageToBase64(byte[] imageByteArray) {
         return Base64.getEncoder().encodeToString(imageByteArray);
     }
+    private ShippingLabelDTO createShippingLabel(Order order, CustomerDetails customerDetails) {
+        ShippingLabelDTO label = new ShippingLabelDTO();
+        label.setTrackingNumber(order.getTrackingNumber());
+        label.setCityRecipient(order.getCityRecipient());
+        label.setWeigh(order.getWeigh());
+        label.setNameRecipient(order.getNameRecipient());
+
+        try {
+            byte[] barcodeImage = barCodeGenerator.generateBarcode(order.getTrackingNumber());
+            label.setBarcode(encodeImageToBase64(barcodeImage));
+        } catch (Exception e) {
+            throw new BarcodeGenerationException("Nie udało się utworzyć etykiety wysyłkowej", e);
+        }
+
+        label.setZipCodeRecipient(order.getZipCodeRecipient());
+        label.setOrderCreated(order.getCreationDate());
+        label.setStreetRecipient(order.getStreetRecipient());
+        label.setDimensions(order.getDimensions().toString());
+        label.setNameCompanySender(customerDetails.getNameCompanySender());
+        label.setZipCodeSender(customerDetails.getZipCodeSender());
+        label.setCitySender(customerDetails.getCitySender());
+        label.setStreetSender(customerDetails.getStreetSender());
+
+        return label;
+    }
+
 
 }

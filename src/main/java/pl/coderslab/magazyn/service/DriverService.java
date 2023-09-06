@@ -95,7 +95,7 @@ public class DriverService {
     }
 
     private double computeEffectiveness(Long deliveredCount, Long notDeliveredCount) {
-        Long total = deliveredCount + notDeliveredCount;
+        long total = deliveredCount + notDeliveredCount;
         return (double) deliveredCount / total * 100;
     }
 

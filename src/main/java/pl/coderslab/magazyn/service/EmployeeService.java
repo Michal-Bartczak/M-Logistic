@@ -19,7 +19,7 @@ public class EmployeeService {
     private final UserPasswordEncryptor userPasswordEncryptor;
     private final DriverRepository driverRepository;
 
-    @Autowired
+
     public EmployeeService(EmployeeRepository employeeRepository, UserService userService, UserPasswordEncryptor userPasswordEncryptor, DriverRepository driverRepository) {
         this.employeeRepository = employeeRepository;
         this.userService = userService;

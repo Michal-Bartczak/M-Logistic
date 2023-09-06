@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.entity.*;
+import pl.coderslab.magazyn.exception.UnknownUserTypeException;
 import pl.coderslab.magazyn.repository.AdminRepository;
 import pl.coderslab.magazyn.repository.CustomerRepository;
 import pl.coderslab.magazyn.repository.DriverRepository;
@@ -40,7 +41,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         BaseUser user = findUserByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("Użytkownik o takiej nazwie nie istnieje w bazie");
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
     }
@@ -73,7 +74,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         } else if (user instanceof Employee) {
             role = "EMPLOYEE";
         } else {
-            throw new IllegalArgumentException("Unknown user type");
+            throw new UnknownUserTypeException("Rola użytkownika nie jest zdefiniowana");
         }
 
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));

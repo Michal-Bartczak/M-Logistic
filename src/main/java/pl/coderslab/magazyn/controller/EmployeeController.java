@@ -35,7 +35,7 @@ public class EmployeeController {
 
     @GetMapping("/homepage")
     public String homePageDriver(Model model) {
-        model.addAttribute("orderList", orderService.getAllOrdersSortedByStatusAndProvider());
+//        model.addAttribute("orderList", orderService.getAllOrdersSortedByStatusAndProvider());
         model.addAttribute("employee", employeeService.getCurrentEmployeeObject());
         model.addAttribute("driversList", driverService.getAllDrivers());
         return "/employee/homepageEmployee";

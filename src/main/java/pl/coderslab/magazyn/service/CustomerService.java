@@ -70,8 +70,8 @@ public class CustomerService {
     }
 
     public void addSendPackageCustomer(Order order) {
-        Customer currentCustomer = getCurrentCustomerObject(); // Pobieranie aktualnie zalogowanego klienta
-        order.setCustomer(currentCustomer);  // Ustawianie klienta dla zamówienia
+        Customer currentCustomer = getCurrentCustomerObject();
+        order.setCustomer(currentCustomer);
 
         orderRepository.save(order);  // Zapisywanie zamówienia w bazie danych
     }
