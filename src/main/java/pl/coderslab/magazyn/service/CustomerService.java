@@ -64,6 +64,11 @@ public class CustomerService {
         return customerDetails;
 
     }
+    public boolean hasCurrentCustomerDetails() {
+        Customer customer = customerRepository.findByUsername(getCurrentUsernameForCustomer());
+        CustomerDetails customerDetails = customer.getCustomerDetails();
+        return customerDetails != null;
+    }
 
     public Customer getCurrentCustomerObject() {
         return customerRepository.findByUsername(getCurrentUsernameForCustomer());

@@ -1,6 +1,6 @@
 package pl.coderslab.magazyn.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.entity.Customer;
 import pl.coderslab.magazyn.entity.CustomerDetails;
@@ -11,11 +11,14 @@ import pl.coderslab.magazyn.repository.CustomerRepository;
 public class CustomerDetailsService {
     private final CustomerDetailsRepository customerDetailsRepository;
     private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
-    @Autowired
-    public CustomerDetailsService(CustomerDetailsRepository customerDetailsRepository, CustomerRepository customerRepository) {
+
+
+    public CustomerDetailsService(CustomerDetailsRepository customerDetailsRepository, CustomerRepository customerRepository, CustomerService customerService) {
         this.customerDetailsRepository = customerDetailsRepository;
         this.customerRepository = customerRepository;
+        this.customerService = customerService;
     }
 
     public void addOrUpdateWhenExistCustomerDetails(Customer customer, CustomerDetails customerDetails) {
@@ -30,5 +33,7 @@ public class CustomerDetailsService {
         customerRepository.save(customer);
 
     }
+
+
 
 }

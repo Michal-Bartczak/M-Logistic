@@ -93,6 +93,7 @@ public class CustomerController {
                                   Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("detailsPackage", order);
+            model.addAttribute("hasDetails", customerService.hasCurrentCustomerDetails());
             model.addAttribute("dimensions", ShipmentDimensions.values());
             model.addAttribute("customer", customerService.getCurrentCustomerObject());
             return "/customer/sendPackage";

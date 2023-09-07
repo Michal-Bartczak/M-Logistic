@@ -48,20 +48,14 @@ public class EmployeeRestController {
     public ResponseEntity<?> filterOrders(@RequestBody FilterOrderDTO filter,
                                           @RequestParam int page,
                                           @RequestParam int size){
-        Page<Order> filteredOrdersPage = orderService.filterOrdersWithPagination(filter, PageRequest.of(page, size));
-        OrderFilterResponse response = new OrderFilterResponse();
-
-        if (filteredOrdersPage.isEmpty()) {
-            response.setMessage("Żadna z przesyłek nie spełnia kryteriów");
-        }
-        response.setOrders(filteredOrdersPage.getContent());
-        response.setDrivers(driverService.getAllDrivers());
-        response.setTotalPages(filteredOrdersPage.getTotalPages());
-
+        OrderFilterResponse response = orderService.filterOrders(filter, PageRequest.of(page, size));
         return ResponseEntity.ok(response);
     }
     @GetMapping("employee/orderStatsForCurrentMonth")
     public OrderReportDTO getOrderStatsForCurrentMonth() {
        return orderService.getOrderReportForCurrentMonth();
     }
+
+
 }
+

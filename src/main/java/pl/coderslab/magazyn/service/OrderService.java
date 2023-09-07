@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.dto.FilterOrderDTO;
+import pl.coderslab.magazyn.dto.OrderFilterResponse;
 import pl.coderslab.magazyn.dto.OrderReportDTO;
 import pl.coderslab.magazyn.dto.OrderStatusDTO;
 import pl.coderslab.magazyn.entity.*;
@@ -167,5 +168,17 @@ public class OrderService {
     public Page<Order> filterOrdersWithPagination(FilterOrderDTO filterOrderDTO, Pageable pageable){
         return customOrderRepository.orderFilterWithPagination(filterOrderDTO,pageable);
     }
+    public OrderFilterResponse filterOrders(FilterOrderDTO filter, Pageable pageable) {
+        Page<Order> filteredOrdersPage = filterOrdersWithPagination(filter, pageable);
+        OrderFilterResponse response = new OrderFilterResponse();
 
+        if (filteredOrdersPage.isEmpty()) {
+            response.setMessage("Żadna z przesyłek nie spełnia kryteriów");
+        }
+        response.setOrders(filteredOrdersPage.getContent());
+        response.setDrivers(driverService.getAllDrivers());
+        response.setTotalPages(filteredOrdersPage.getTotalPages());
+
+        return response;
+    }
 }

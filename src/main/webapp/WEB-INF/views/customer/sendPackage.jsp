@@ -43,39 +43,16 @@
       <p>Twoja paczka została wysłana !</p>
     </div>
     </c:if>
+
     <form:form modelAttribute="detailsPackage" action="/customer/send" method="post" id="detailsPackage">
-      <div class="row"> <!-- Dodajemy wiersz -->
-        <div class="col-md-6"> <!-- Pierwsza połowa formularza -->
+      <div class="row">
+        <div class="col-md-6">
           <div class="form-group">
-            <label for="dimensions">Wymiary przesyłki</label>
-            <select class="form-control" id="dimensions" name="dimensions">
-              <c:forEach var="dim" items="${dimensions}">
-                <option value="${dim}">${dim}</option>
-
-              </c:forEach>
-            </select>
+            <label for="nameRecipient">Nazwa odbiorcy</label>
+            <input type="text" class="form-control" id="nameRecipient" name="nameRecipient" value="${detailsPackage.nameRecipient}"/>
+            <form:errors path="nameRecipient" class="error"/>
           </div>
 
-          <div class="form-group">
-            <label for="weigh">Waga</label>
-            <input type="text" class="form-control" id="weigh" name="weigh" value="${detailsPackage.weigh}"/>
-            <form:errors path="weigh" class="error"/>
-          </div>
-
-          <div class="form-group">
-            <label for="price">Cena</label>
-            <input type="text" pattern="\d+(\.\d{1,2})?" class="form-control" id="price" name="price" value="${detailsPackage.price}"/>
-            <form:errors path="price" class="error"/>
-          </div>
-
-          <div class="form-group">
-            <label for="zipCodeRecipient">Kod pocztowy odbiorcy</label>
-            <input type="text" class="form-control" id="zipCodeRecipient" name="zipCodeRecipient" value="${detailsPackage.zipCodeRecipient}"/>
-            <form:errors path="zipCodeRecipient" class="error"/>
-          </div>
-        </div>
-
-        <div class="col-md-6"> <!-- Druga połowa formularza -->
           <div class="form-group">
             <label for="cityRecipient">Miasto odbiorcy</label>
             <input type="text" class="form-control" id="cityRecipient" name="cityRecipient" value="${detailsPackage.cityRecipient}"/>
@@ -89,15 +66,40 @@
           </div>
 
           <div class="form-group">
-            <label for="nameRecipient">Nazwa odbiorcy</label>
-            <input type="text" class="form-control" id="nameRecipient" name="nameRecipient" value="${detailsPackage.nameRecipient}"/>
-            <form:errors path="nameRecipient" class="error"/>
+            <label for="zipCodeRecipient">Kod pocztowy odbiorcy</label>
+            <input type="text" class="form-control" id="zipCodeRecipient" name="zipCodeRecipient" value="${detailsPackage.zipCodeRecipient}"/>
+            <form:errors path="zipCodeRecipient" class="error"/>
           </div>
         </div>
-      </div> <!-- Koniec wiersza -->
 
-      <button type="submit" class="btn btn-secondary">Wyślij zamówienie</button>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="dimensions">Wymiary przesyłki</label>
+            <select class="form-control" id="dimensions" name="dimensions">
+              <c:forEach var="dim" items="${dimensions}">
+                <option value="${dim}">${dim}</option>
+              </c:forEach>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Cena</label>
+            <input type="text" pattern="\d+(\.\d{1,2})?" class="form-control" id="price" name="price" value="${detailsPackage.price}"/>
+            <form:errors path="price" class="error"/>
+          </div>
+
+          <div class="form-group">
+            <label for="weigh">Waga</label>
+            <input type="text" class="form-control" id="weigh" name="weigh" value="${detailsPackage.weigh}"/>
+            <form:errors path="weigh" class="error"/>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-secondary" id="submitButton">Wyślij zamówienie</button>
     </form:form>
+
+
   </div>
 
   <!-- ... -->
@@ -105,4 +107,14 @@
 
 </div>
 
-<jsp:include page="../includes/footer.jsp"/>
+<footer>
+  <p><i class="fa fa-truck"></i> &copy; 2023 M-Logistic. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/js/swapProvider.js"></script>
+<script src="/js/checkCustomerDetails.js"></script>
+
+</body>
+</html>
