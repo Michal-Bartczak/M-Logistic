@@ -14,6 +14,8 @@ public class FilterOrderDTO {
     private String status;
     private ShipmentDimensions kindEur;
     private ShipmentDimensions kindHp;
+    private int page = 0;
+    private int size = 20;
 
 
 }

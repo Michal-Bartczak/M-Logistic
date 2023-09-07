@@ -475,3 +475,24 @@ button.btn.btn-link {
     height: 100%;
     width: 100%;
 }
+.pagination-btn {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    background-color:#272c4a ;
+    color: white;
+
+}
+
+#pagination-row {
+    width: 100%;
+    background-color: #1b203d;
+    line-height: 18px;
+    text-align: center;
+
+}
+.pagination-btn-active{
+    background-color:#6c757d  ;
+}

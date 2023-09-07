@@ -3,6 +3,7 @@ package pl.coderslab.magazyn.generic;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import pl.coderslab.magazyn.exception.PrincipalTypeMismatchException;
 
 @Component
 public class Converter {
@@ -13,7 +14,7 @@ public class Converter {
         if (type.isInstance(principal)) {
             return type.cast(principal);
         } else {
-            throw new IllegalArgumentException("Principal is not of type " + type.getSimpleName());
+            throw new PrincipalTypeMismatchException("Principal nie jest typu: " + type.getSimpleName());
         }
     }
 }

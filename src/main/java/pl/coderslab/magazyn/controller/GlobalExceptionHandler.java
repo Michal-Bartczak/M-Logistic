@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.magazyn.exception.BarcodeGenerationException;
 import pl.coderslab.magazyn.exception.OrderNotFoundException;
+import pl.coderslab.magazyn.exception.PrincipalTypeMismatchException;
 import pl.coderslab.magazyn.exception.UnknownUserTypeException;
 
 @ControllerAdvice
@@ -40,4 +41,11 @@ public class GlobalExceptionHandler {
         modelAndView.addObject("errorMessage", ex.getMessage());
         return modelAndView;
     }
+    @ExceptionHandler(PrincipalTypeMismatchException.class)
+    public ModelAndView handlePrincipalTypeMismatchException(PrincipalTypeMismatchException ex) {
+        ModelAndView modelAndView = new ModelAndView("/error/404"); //
+        modelAndView.addObject("errorMessage", ex.getMessage());
+        return modelAndView;
+    }
+
 }

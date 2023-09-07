@@ -1,6 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
+    function renderPagination(totalPages, currentPage) {
+        console.log('Total Pages:', totalPages);
+        console.log('Current Page:', currentPage);
+        let paginationContainer = document.getElementById('pagination');
+        paginationContainer.innerHTML = '';
 
-    function filterOrders() {
+        for (let i = 0; i < totalPages; i++) {
+            let btn = document.createElement('button');
+            btn.innerText = i + 1;
+            btn.dataset.pageNumber = i; // Przypisanie wartości i jako atrybutu danych
+
+            if (i === currentPage) {
+                btn.classList.add('pagination-btn-active');
+            } else {
+                btn.classList.add('pagination-btn');
+            }
+
+            btn.addEventListener('click', function() {
+                let page = parseInt(this.dataset.pageNumber); // Pobranie wartości i z atrybutu danych
+                filterOrders(page, 10, false, currentPage); // Wywołanie filterOrders z prawidłową wartością strony
+            });
+            paginationContainer.appendChild(btn);
+        }
+    }
+
+    function filterOrders(page = 0, size = 10, forceResetPage = false, currentPage) {
+        console.log('Filter Orders - Page:', page);
+        console.log('Filter Orders - Size:', size);
+        console.log('Filter Orders - Force Reset Page:', forceResetPage);
+        if (forceResetPage) {
+            page = 0;
+        }
         let filterText = document.getElementById('filter-text').value;
         let filterData = document.getElementById('filter-data').value;
         let status = document.getElementById('status').value;
@@ -15,10 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
             filterData: filterData,
             status: status,
             kindEur: kindEur,
-            kindHp: kindHp
+            kindHp: kindHp,
+            page: page,
+            size: size
         };
 
-        fetch('/employee/filter', {
+        fetch(`/employee/filter?page=${params.page}&size=${params.size}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -30,23 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let contentListContainer = document.querySelector('.content-list');
 
-
-
-
-
                 contentListContainer.innerHTML = '';
 
-
                 if (data.message) {
-                        document.getElementById("noOrdersMessage").style.display = "block";
-                    } else {
-                        document.getElementById("noOrdersMessage").style.display = "none";
+                    document.getElementById("noOrdersMessage").style.display = "block";
+                } else {
+                    document.getElementById("noOrdersMessage").style.display = "none";
 
 
                     contentListContainer.innerHTML = data.orders.map((order, index) => `
-  
-
-      
                      <div class="col-div-3">
                         <div class="accordion-header">
                             <button class="btn btn-link" type="button" data-bs-toggle="collapse"
@@ -70,18 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                         <p class="list-header">Status</p>
                                         <p class="list">${order.status}</p>
                                     </div>
-
-
                                 </div>
                             </button>
                         </div>
-                    <div id="collapse${index}" class="collapse" data-bs-parent="#accordionExample">
-
-
+                        <div id="collapse${index}" class="collapse" data-bs-parent="#accordionExample">
                             <div class="box row">
                                 <div class="col-2">${order.dimensions}</div>
                                 <div class="col-2 text-center">${order.price} zł</div>
-
                                 <div class="col-2 text-center">${order.weigh} kg</div>
                                 <div class="col-2 text-center ">
                                     <a href="#" data-bs-toggle="modal-lp" id="trackingNumberButton-lp"
@@ -95,19 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <div class="col-2 text-end">
                                     <select class="driverSelect" data-order-id="${order.id}">
-
                                         <option value="${order.provider}">${order.provider}</option>
-
-                                   ${data.drivers.map(driver =>
+                                        ${data.drivers.map(driver =>
                         `<option value="${driver.id}">${driver.name} ${driver.surname}</option>`).join('')}
-
-                                        
                                     </select>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                 `).join('');
                     document.querySelectorAll('.driverSelect').forEach(selectElement => {
@@ -118,18 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             updateOrderDriver(orderId, driverId);
                         });
                     });
-
+                    renderPagination(data.totalPages, page);
                 }
             });
     }
 
+    document.getElementById('filter-text').addEventListener('input', () => filterOrders(0, 10, true, 0));
+    document.getElementById('filter-data').addEventListener('input', () => filterOrders(0, 10, true, 0));
+    document.getElementById('status').addEventListener('change', () => filterOrders(0, 10, true, 0));
+    document.getElementById('kind-eur').addEventListener('change', () => filterOrders(0, 10, true, 0));
+    document.getElementById('kind-hp').addEventListener('change', () => filterOrders(0, 10, true, 0));
 
-    document.getElementById('filter-text').addEventListener('input', filterOrders);
-
-    document.getElementById('filter-data').addEventListener('input', filterOrders);
-    document.getElementById('status').addEventListener('change', filterOrders);
-    document.getElementById('kind-eur').addEventListener('change', filterOrders);
-    document.getElementById('kind-hp').addEventListener('change', filterOrders);
-
-    filterOrders();
+    filterOrders(0, 10, true, 0);
 });

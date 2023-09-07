@@ -1,5 +1,7 @@
 package pl.coderslab.magazyn.controller.rest;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.magazyn.dto.FilterOrderDTO;
@@ -43,15 +45,18 @@ public class EmployeeRestController {
     }
 
     @PostMapping("employee/filter")
-    public ResponseEntity<?> filterOrders(@RequestBody FilterOrderDTO filter){
-        List<Order> filteredOrders = orderService.filterOrders(filter);
+    public ResponseEntity<?> filterOrders(@RequestBody FilterOrderDTO filter,
+                                          @RequestParam int page,
+                                          @RequestParam int size){
+        Page<Order> filteredOrdersPage = orderService.filterOrdersWithPagination(filter, PageRequest.of(page, size));
         OrderFilterResponse response = new OrderFilterResponse();
 
-        if (filteredOrders.isEmpty()) {
+        if (filteredOrdersPage.isEmpty()) {
             response.setMessage("Żadna z przesyłek nie spełnia kryteriów");
         }
-            response.setOrders(filteredOrders);
-            response.setDrivers(driverService.getAllDrivers());
+        response.setOrders(filteredOrdersPage.getContent());
+        response.setDrivers(driverService.getAllDrivers());
+        response.setTotalPages(filteredOrdersPage.getTotalPages());
 
         return ResponseEntity.ok(response);
     }

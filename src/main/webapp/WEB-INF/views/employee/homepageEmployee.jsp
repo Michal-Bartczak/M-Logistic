@@ -70,6 +70,9 @@
 
             </div>
         </div>
+        <div class="row" id="pagination-row" >
+            <div id="pagination"></div>
+        </div>
 
         <div id="noOrdersMessage" style="display: none;">Żadna z przesyłek nie spełnia kryteriów</div>
 

@@ -59,12 +59,5 @@ public class HomeController {
      adminRepository.save(admin);
         return "redirect:/159406111";
     }
-    @GetMapping("/someEndpoint")
-    public OrderNotFoundException myControllerMethod() {
-        return new OrderNotFoundException("Nie można znaleźć");
-    }
-    @GetMapping("/throwException")
-    public String throwException() {
-        throw new OrderNotFoundException("Testowy wyjątek OrderNotFoundException");
-    }
+
 }

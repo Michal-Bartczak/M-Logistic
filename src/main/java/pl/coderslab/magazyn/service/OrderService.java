@@ -1,6 +1,8 @@
 package pl.coderslab.magazyn.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.coderslab.magazyn.dto.FilterOrderDTO;
 import pl.coderslab.magazyn.dto.OrderReportDTO;
@@ -160,6 +162,10 @@ public class OrderService {
         }
 
         return new OrderStatusDTO(order.getStatus(), null);
+    }
+
+    public Page<Order> filterOrdersWithPagination(FilterOrderDTO filterOrderDTO, Pageable pageable){
+        return customOrderRepository.orderFilterWithPagination(filterOrderDTO,pageable);
     }
 
 }
