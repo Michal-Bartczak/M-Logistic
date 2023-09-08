@@ -5,11 +5,10 @@ window.onload = function() {
             if (!hasDetails) {
                 document.getElementById("submitButton").disabled = true;
 
-                // Znajdź kontener i formularz
                 const containerDiv = document.querySelector(".container.mt-5.ml-3");
                 const form = document.getElementById("detailsPackage");
 
-                // Stwórz nowy div z wiadomością ostrzeżenia
+
                 const alertDiv = document.createElement('div');
                 alertDiv.className = 'alert alert-danger';
                 alertDiv.style.width = '30%';
@@ -21,7 +20,7 @@ window.onload = function() {
                 alertParagraph.innerHTML = 'Bez uzupełnienia swoich danych,<br>nie możesz wysłać paczki!';
                 alertDiv.appendChild(alertParagraph);
 
-                // Wstaw nowy div przed formularzem
+
                 containerDiv.insertBefore(alertDiv, form);
             }
         })

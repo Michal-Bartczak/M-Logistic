@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (){
 });
 
 function sendToServer(orderId, status){
-    fetch(`/driver/editStatus/${orderId}`, {  // Użyj backticks (` `) do interpolacji ciągów
+    fetch(`/driver/editStatus/${orderId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

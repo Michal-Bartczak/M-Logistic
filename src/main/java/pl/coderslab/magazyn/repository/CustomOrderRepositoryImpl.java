@@ -29,6 +29,7 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Order> query = cb.createQuery(Order.class);
         Root<Order> orderRoot = query.from(Order.class);
+
         List<Predicate> predicates = new ArrayList<>();
 
         // Filter by trackingNumber
@@ -102,7 +103,7 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository {
 
         query.where(predicates.toArray(new Predicate[0]));
 
-        // Sortowanie
+        // Sorting
         Expression<Object> orderByCase = cb.selectCase()
                 .when(cb.equal(orderRoot.get("status"), OrderStatus.MAGAZYN), 1)
                 .when(cb.equal(orderRoot.get("status"), OrderStatus.DOSTAWA), 2)
@@ -124,7 +125,7 @@ public class CustomOrderRepositoryImpl implements CustomOrderRepository {
         try {
             CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
 
-            // Utworzenie nowego Root dla countQuery
+
             Root<Order> countRoot = countQuery.from(Order.class);
 
             countQuery.select(cb.count(countRoot)).where(predicates.toArray(new Predicate[0]));

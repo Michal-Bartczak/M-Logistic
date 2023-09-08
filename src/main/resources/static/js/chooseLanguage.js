@@ -7,7 +7,7 @@ function setCookie(name, value, exhours) {
     d.setTime(d.getTime() + (exhours * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
 
-    // Dodanie atrybutów SameSite i Secure do ciasteczka
+
     document.cookie = name + "=" + value + ";" + expires + ";path=/;SameSite=None;Secure";
 }
 
