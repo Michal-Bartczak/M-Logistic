@@ -416,6 +416,11 @@ button.btn.btn-link {
     height: 100%;
     width: 100%;
 }
-
+#shippingLabelModal{
+    color : black;
+}
+#modalLp{
+    color: black;
+}
 
 

@@ -1,28 +1,32 @@
-# M-Logistic - Aplikacja Zarządzania Paczkami
+# M-Logistic - Parcel Management Application
 
-## Opis:
-Aplikacja "Magazyn" została stworzona w celu zarządzania różnymi aspektami działalności magazynowej, w tym zarządzaniem klientami,
-zamówieniami, dostawami i ich statusami oraz różnymi typami użytkowników.
+## Description:
+The "Warehouse" application was created to manage various aspects of warehouse operations, including customer management,
+orders, deliveries and their statuses and different types of users.
 
-## Funkcjonalności:
-- **Zarządzanie klientami**: Możliwość dodawania, edycji i usuwania informacji o klientach.
-- **Zarządzanie zamówieniami**: Śledzenie statusu zamówienia oraz jego historii.
-- **Zarządzanie dostawami**: Monitorowanie statusu dostawy, w tym możliwość aktualizacji statusu oraz przeglądania logów dostaw.
-- **Zarządzanie użytkownikami**: Obsługa różnych typów użytkowników, takich jak kierowcy, pracownicy i administratorzy.
-- **Generowanie raportów**: Funkcjonalności związane z generowaniem różnych raportów, listów i etykiet przewozowych.
-- **Międzynarodowa obsługa**: Aplikacja obsługuje różne języki, w tym angielski i polski.
+## Functionalities:
+- **Customer Management**: Ability to add, edit and delete customer information.
+- **Order Management**: Track order status and history.
+- **Delivery Management**: Monitoring delivery status, including the ability to update status and view delivery logs.
+- **User Management**: Supports various user types such as drivers, employees and administrators.
+- **Report generation**: Functionalities related to generating various reports, letters and shipping labels.
+- **International support**: The application supports various languages, including English and Polish.
 
-## Użyte technologie:
-- **Spring Framework**: W tym Spring Security do zarządzania zabezpieczeniami.
-- **Jackson**: Obsługa danych w formacie JSON.
-- **Logback i Log4j**: Narzędzia do logowania.
-- **MySQL**: Baza danych.
+## Technologies used:
+- **Spring Framework**: Including Spring Security for security management.
+- **Jackson**: Support for JSON data.
+- **Logback and Log4j**: Login tools.
+- **MySQL**: Database.
 - **JSTL**: JavaServer Pages Standard Tag Library.
+- **HTML**: Partial use of Bootstrap 5 technology when creating pages.
+- **CSS**: Styles for pages.
+- **JavaScript**: REST support and creating dynamic functions.
 
-## Struktura aplikacji:
-Aplikacja podzielona jest na różne pakiety, takie jak:
-- `controller`: Obsługuje żądania HTTP i zarządza przepływem danych w aplikacji.
-- `service`: Zawiera logikę biznesową aplikacji.
-- `entity`: Zawiera klasy encji, które reprezentują modele danych.
-- `repository`: Interfejsy repozytoriów do wykonywania operacji na bazie danych.
-- `dto`: Klasy Data Transfer Object do przekazywania danych między warstwami.
+## Application structure:
+The application is divided into different packages such as:
+- `controller`: Handles HTTP requests and manages data flow in the application.
+- `service`: Contains the business logic of the application.
+- `entity`: Contains entity classes that represent data models.
+- `repository`: Repository interfaces for performing database operations.
+- `dto`: Data Transfer Object classes for transferring data between layers.
+

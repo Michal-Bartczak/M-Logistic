@@ -496,3 +496,9 @@ button.btn.btn-link {
 .pagination-btn-active{
     background-color:#6c757d  ;
 }
+#shippingLabelModal{
+    color : black;
+}
+#modalLp{
+    color: black;
+}

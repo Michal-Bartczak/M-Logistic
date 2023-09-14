@@ -1,6 +1,5 @@
 package pl.coderslab.magazyn.controller.rest;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,12 +7,10 @@ import pl.coderslab.magazyn.dto.FilterOrderDTO;
 import pl.coderslab.magazyn.dto.OrderFilterResponse;
 import pl.coderslab.magazyn.dto.OrderReportDTO;
 import pl.coderslab.magazyn.entity.Order;
-import pl.coderslab.magazyn.repository.OrderRepository;
 import pl.coderslab.magazyn.service.DriverService;
 import pl.coderslab.magazyn.service.OrderService;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
