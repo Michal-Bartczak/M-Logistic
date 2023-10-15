@@ -1,6 +1,5 @@
 package pl.coderslab.magazyn.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -22,12 +21,9 @@ public class CustomerService {
     private final UserService userService;
 
 
-    @Autowired
     public CustomerService(CustomerRepository customerRepository, UserPasswordEncryptor userPasswordEncryptor, OrderRepository orderRepository, UserService userService) {
         this.customerRepository = customerRepository;
         this.userPasswordEncryptor = userPasswordEncryptor;
-
-
         this.orderRepository = orderRepository;
         this.userService = userService;
     }
@@ -38,7 +34,14 @@ public class CustomerService {
         customer.setEmail(registrationForm.getEmail());
         customer.setPassword(registrationForm.getPassword());
 
-        return userPasswordEncryptor.encryptPasswordInBaseUser(customer);
+        Customer encryptedCustomer = userPasswordEncryptor.encryptPasswordInBaseUser(customer);
+        if (encryptedCustomer == null) {
+
+            throw new IllegalArgumentException("Nie można zaszyfrować hasła użytkownika.");
+        }
+
+        return encryptedCustomer;
+
     }
 
     public void saveCustomerRegistration(Customer customer) {
@@ -78,7 +81,7 @@ public class CustomerService {
         Customer currentCustomer = getCurrentCustomerObject();
         order.setCustomer(currentCustomer);
 
-        orderRepository.save(order);  // Zapisywanie zamówienia w bazie danych
+        orderRepository.save(order);
     }
 
     public boolean saveNewPasswordCustomer(String oldPassword, String newPassword) {
