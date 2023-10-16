@@ -44,6 +44,8 @@ public class UserService {
                             .allMatch(Objects::isNull);
     }
     public boolean isPasswordValid(String rawPassword, String hashedPassword) {
+        if (hashedPassword == null)
+            return false;
         return passwordEncoder.matches(rawPassword, hashedPassword);
     }
 

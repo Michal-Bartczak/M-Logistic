@@ -6,6 +6,7 @@
 *.iml
 *.ipr
 *.iws
+/magazyn/.idea   # Ignoruj pliki .idea tylko w katalogu /magazyn
 
 # Katalogi dla narzędzi budowania
 /target
@@ -44,6 +45,9 @@ Thumbs.db
 *.swo
 *.swp
 *.vi
+*.mvnw
+*.mvnw.cmd
+HELP.md  # Dodaj HELP.md, aby go zignorować
 
 # Pliki dla pakietów Java
 *.jar
@@ -60,3 +64,4 @@ Thumbs.db
 /.idea/
 *.iml
 *.iws
+

@@ -27,8 +27,9 @@ public class DriverService {
     private final UserService userService;
     private final DeliveryLogRepository deliveryLogRepository;
 
-    @Autowired
-    public DriverService(DriverRepository driverRepository, UserPasswordEncryptor userPasswordEncryptor, OrderRepository orderRepository, UserService userService, DeliveryLogRepository deliveryLogRepository){
+
+    public DriverService(DriverRepository driverRepository, UserPasswordEncryptor userPasswordEncryptor, OrderRepository orderRepository,
+                         UserService userService, DeliveryLogRepository deliveryLogRepository){
         this.driverRepository = driverRepository;
         this.userPasswordEncryptor = userPasswordEncryptor;
         this.orderRepository = orderRepository;

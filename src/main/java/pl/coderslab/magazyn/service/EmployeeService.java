@@ -20,7 +20,8 @@ public class EmployeeService {
     private final DriverRepository driverRepository;
 
 
-    public EmployeeService(EmployeeRepository employeeRepository, UserService userService, UserPasswordEncryptor userPasswordEncryptor, DriverRepository driverRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, UserService userService,
+                           UserPasswordEncryptor userPasswordEncryptor, DriverRepository driverRepository) {
         this.employeeRepository = employeeRepository;
         this.userService = userService;
         this.userPasswordEncryptor = userPasswordEncryptor;
