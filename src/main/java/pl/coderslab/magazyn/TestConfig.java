@@ -7,8 +7,8 @@ import pl.coderslab.magazyn.service.CustomerService;
 
 @Configuration
 public class TestConfig {
-    @Bean
-    public CustomerService customerService(CustomerRepository customerRepository) {
-        return new CustomerService(customerRepository, null, null, null);
-    }
+//    @Bean
+//    public CustomerService customerService(CustomerRepository customerRepository) {
+//        return new CustomerService(customerRepository, null, null, null);
+//    }
 }

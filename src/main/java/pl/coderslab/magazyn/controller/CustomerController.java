@@ -19,14 +19,12 @@ import javax.validation.Valid;
 @Controller
 public class CustomerController {
     private final CustomerService customerService;
-
     private final CustomerDetailsService customerDetailsService;
     private final UserService userService;
     private final OrderService orderService;
 
     public CustomerController(CustomerService customerService, CustomerDetailsService customerDetailsService, UserService userService, OrderService orderService) {
         this.customerService = customerService;
-
         this.customerDetailsService = customerDetailsService;
         this.userService = userService;
         this.orderService = orderService;
@@ -39,14 +37,14 @@ public class CustomerController {
         return "customer/homepageCustomer";
     }
 
-    @GetMapping("/editDetails")
+    @GetMapping("/edit-details")
     public String editCustomerDetails(Model model) {
         model.addAttribute("customer", customerService.getCurrentCustomerObject());
         model.addAttribute("editForm", customerService.getCurrentCustomerDetails());
         return "/customer/editDetails";
     }
 
-    @PostMapping("/editDetails")
+    @PostMapping("/edit-details")
     public String saveCustomerDetails(@Valid @ModelAttribute("editForm") CustomerDetails customerDetails,
                                       BindingResult bindingResult,
                                       Model model) {
@@ -58,7 +56,7 @@ public class CustomerController {
         Customer customer = customerService.getCurrentCustomerObject();
         customerDetailsService.addOrUpdateWhenExistCustomerDetails(customer, customerDetails);
 
-        return "redirect:/customer/editDetails?update=true";
+        return "redirect:/customer/edit-details?update=true";
     }
 
     @GetMapping("/edit-password")
