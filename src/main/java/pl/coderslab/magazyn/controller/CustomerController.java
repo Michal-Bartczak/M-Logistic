@@ -41,7 +41,7 @@ public class CustomerController {
     public String editCustomerDetails(Model model) {
         model.addAttribute("customer", customerService.getCurrentCustomerObject());
         model.addAttribute("editForm", customerService.getCurrentCustomerDetails());
-        return "/customer/editDetails";
+        return "customer/editDetails";
     }
 
     @PostMapping("/edit-details")
@@ -62,7 +62,7 @@ public class CustomerController {
     @GetMapping("/edit-password")
     public String editPassword(Model model) {
         model.addAttribute("customer", customerService.getCurrentCustomerObject());
-        return "/customer/editPassword";
+        return "customer/editPassword";
     }
 
     @PostMapping("/edit-password")
@@ -82,7 +82,7 @@ public class CustomerController {
         model.addAttribute("customer", customerService.getCurrentCustomerObject());
         model.addAttribute("dimensions", ShipmentDimensions.values());
         model.addAttribute("detailsPackage", new Order());
-        return "/customer/sendPackage";
+        return "customer/sendPackage";
     }
 
     @PostMapping("/send")
@@ -94,7 +94,7 @@ public class CustomerController {
             model.addAttribute("hasDetails", customerService.hasCurrentCustomerDetails());
             model.addAttribute("dimensions", ShipmentDimensions.values());
             model.addAttribute("customer", customerService.getCurrentCustomerObject());
-            return "/customer/sendPackage";
+            return "customer/sendPackage";
         }
         customerService.addSendPackageCustomer(order);
         return "redirect:/customer/send?sent=true";
