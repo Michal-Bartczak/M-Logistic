@@ -22,12 +22,12 @@ public class DriverController {
     public String showHomepage(Model model){
         model.addAttribute("driver", driverService.getCurrentDriverObject());
         model.addAttribute("orderlist", driverService.getAllOrdersForCurrentDriver());
-        return "/driver/homepageDriver";
+        return "driver/homepageDriver";
     }
     @GetMapping("/edit-password")
     public String editPasswordDriver(Model model){
         model.addAttribute("driver", driverService.getCurrentDriverObject());
-        return "/driver/editPassword";
+        return "driver/editPassword";
     }
     @PostMapping("/edit-password")
     public String saveNewPasswordDriver(@RequestParam String oldPassword,
@@ -41,7 +41,7 @@ public class DriverController {
     @GetMapping("/raport")
     public String getRaport(Model model){
         model.addAttribute("driver", driverService.getCurrentDriverObject());
-        return "/driver/raportDriver";
+        return "driver/raportDriver";
     }
 
 }

@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.coderslab.magazyn.entity.Customer;
 import pl.coderslab.magazyn.entity.CustomerDetails;
@@ -19,6 +20,7 @@ import pl.coderslab.magazyn.service.CustomerService;
 import pl.coderslab.magazyn.service.OrderService;
 import pl.coderslab.magazyn.service.UserService;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -187,14 +189,28 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void testSaveSendPackage_withoutBindingResult() throws Exception {
+    public void testAddOrder() throws Exception {
+        Order order = new Order();
+        order.setDimensions(ShipmentDimensions.HP);
+        order.setWeigh("15.5");
+        order.setPrice(new BigDecimal("100.00"));
+        order.setZipCodeRecipient("12-345");
+        order.setCityRecipient("Example City");
+        order.setStreetRecipient("Example Street");
+        order.setNameRecipient("John Doe");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/customer/send"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/customer/send?sent=true"));
-
+        mockMvc.perform(MockMvcRequestBuilders.post("/customer/send")
+                        .param("dimensions", order.getDimensions().name())
+                        .param("weigh", order.getWeigh())
+                        .param("price", order.getPrice().toString())
+                        .param("zipCodeRecipient", order.getZipCodeRecipient())
+                        .param("cityRecipient", order.getCityRecipient())
+                        .param("streetRecipient", order.getStreetRecipient())
+                        .param("nameRecipient", order.getNameRecipient())
+                )
+                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+                .andExpect(MockMvcResultMatchers.view().name("redirect:/customer/send?sent=true"));
     }
-
 }
 
 
