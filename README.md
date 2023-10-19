@@ -21,6 +21,7 @@ orders, deliveries and their statuses and different types of users.
 - **HTML**: Partial use of Bootstrap 5 technology when creating pages.
 - **CSS**: Styles for pages.
 - **JavaScript**: REST support and creating dynamic functions.
+- **JUnit and Mockito**: Frameworks for unit testing.
 
 ## Application structure:
 The application is divided into different packages such as:
@@ -29,4 +30,18 @@ The application is divided into different packages such as:
 - `entity`: Contains entity classes that represent data models.
 - `repository`: Repository interfaces for performing database operations.
 - `dto`: Data Transfer Object classes for transferring data between layers.
+
+## Unit Testing
+
+The M-Logistic application includes a suite of unit tests to ensure the correctness of the codebase. These tests are written using JUnit and Mockito to isolate and verify the behavior of individual components. 
+
+### Running Unit Tests
+
+To run the unit tests, you can use a Java IDE or build tools like Maven or Gradle. The tests are located in the `src/test/java` directory. You can run the tests using the following command:
+
+```bash
+mvn test
+
+
+Michał Bartczak
 
