@@ -40,8 +40,8 @@ The M-Logistic application includes a suite of unit tests to ensure the correctn
 To run the unit tests, you can use a Java IDE or build tools like Maven or Gradle. The tests are located in the `src/test/java` directory. You can run the tests using the following command:
 
 ```bash
-mvn test```
-
+mvn test
+```
 
 
 **Michał Bartczak**
