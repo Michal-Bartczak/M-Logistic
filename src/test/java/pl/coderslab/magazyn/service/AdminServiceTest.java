@@ -8,17 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import pl.coderslab.magazyn.entity.Admin;
 import pl.coderslab.magazyn.entity.Customer;
 import pl.coderslab.magazyn.entity.Driver;
 import pl.coderslab.magazyn.entity.Employee;
 import pl.coderslab.magazyn.entity.Order;
-import pl.coderslab.magazyn.repository.AdminRepository;
-import pl.coderslab.magazyn.repository.CustomerRepository;
-import pl.coderslab.magazyn.repository.DriverRepository;
-import pl.coderslab.magazyn.repository.EmployeeRepository;
-import pl.coderslab.magazyn.repository.OrderRepository;
-import pl.coderslab.magazyn.service.AdminService;
+import pl.coderslab.magazyn.repository.*;
 
 import java.util.ArrayList;
 import java.util.List;
